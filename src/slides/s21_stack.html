@@ -1,0 +1,50 @@
+<!-- ============ 21 · TECH STACK ============ -->
+<section class="slide">
+  <div class="slide-head">
+    <div class="eyebrow">How we build it · 21</div>
+    <div class="row">
+      <h2 class="title">The stack.</h2>
+      <p class="lede" style="max-width:40ch;padding-bottom:7px">Boring, cheap, and hosted in India. Every choice here is reversible except the database.</p>
+    </div>
+  </div>
+
+  <div class="body" style="gap:15px">
+    <div>
+      <div class="lbl" style="margin-bottom:9px">Client</div>
+      <div class="g4">
+        <div class="tile"><span class="n">Flutter</span><span class="r">One codebase, Android and iOS</span></div>
+        <div class="tile"><span class="n">Next.js</span><span class="r">Admin dashboard</span></div>
+        <div class="tile b"><span class="n">WhatsApp Cloud API</span><span class="r">Second front door and alerts</span></div>
+        <div class="tile"><span class="n">Firebase</span><span class="r">Push notifications</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="lbl" style="margin-bottom:9px">Server and data</div>
+      <div class="g4">
+        <div class="tile"><span class="n">NestJS or FastAPI</span><span class="r">Backend API</span></div>
+        <div class="tile"><span class="n">PostgreSQL</span><span class="r">Bookings, prices, savings</span></div>
+        <div class="tile"><span class="n">Redis</span><span class="r">Cache and job state</span></div>
+        <div class="tile"><span class="n">BullMQ</span><span class="r">The daily check scheduler</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="lbl" style="margin-bottom:9px">Services</div>
+      <div class="g5">
+        <div class="tile b"><span class="n">Gemini Flash</span><span class="r">Reads bookings</span></div>
+        <div class="tile b"><span class="n">SerpApi</span><span class="r">Hotel prices</span></div>
+        <div class="tile"><span class="n">Cloudflare Email</span><span class="r">Forwarded mail, free</span></div>
+        <div class="tile"><span class="n">Razorpay</span><span class="r">UPI payments</span></div>
+        <div class="tile"><span class="n">DigitalOcean</span><span class="r">Bangalore region</span></div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <span class="rule"></span>
+      <span>Optional for the very first demo: <b>n8n</b> to wire the loop together before any of this is written, so we can test the idea on real hotels in days rather than weeks.</span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Prices for every paid item on slide 25. Hosting in the Bangalore region keeps personal data in India under the DPDP Act.</span>
+  </div>
+</section>

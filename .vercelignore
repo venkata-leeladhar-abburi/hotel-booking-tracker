@@ -1,0 +1,5 @@
+# Deploy only the built deck. index.html is self-contained (photos and fonts inlined),
+# so sources, notes, photos and the build script stay in the repo but are not served.
+/*
+!index.html
+!vercel.json

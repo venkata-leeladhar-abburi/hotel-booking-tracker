@@ -1,0 +1,52 @@
+<!-- ============ 20 · DATA SOURCE OPTIONS ============ -->
+<section class="slide">
+  <div class="slide-head">
+    <div class="eyebrow">How we build it · 20</div>
+    <div class="row">
+      <h2 class="title">One source now, three in <em>reserve</em>.</h2>
+      <p class="lede" style="max-width:33ch;padding-bottom:7px">Depending on a single price feed is the biggest technical risk in the product.</p>
+    </div>
+  </div>
+
+  <div class="body" style="gap:16px">
+    <div class="g4" style="flex:1">
+      <div class="card pad" style="background:rgba(31,95,216,.08)">
+        <span class="lbl" style="color:var(--accent)">MVP · chosen</span>
+        <h3 style="color:var(--accent)">SerpApi</h3>
+        <p>Google Hotels prices by property token. Free 250 searches a month to validate, then $75 for 5,000.<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup></p>
+        <p class="push sm"><b>Risk</b> — one vendor between us and every price.</p>
+      </div>
+      <div class="card pad">
+        <span class="lbl">Backup</span>
+        <h3>MakCorps · Apify</h3>
+        <p>MakCorps covers 200+ sites; Apify has a Google Hotels actor. Swapped in if SerpApi coverage or health drops.<sup style="color:var(--accent);font-size:10px;font-weight:600">2</sup></p>
+        <p class="push sm"><b>Why not first</b> — less predictable, and a second bill.</p>
+      </div>
+      <div class="card pad">
+        <span class="lbl">Earns money</span>
+        <h3>Agoda · Booking.com</h3>
+        <p>Affiliate APIs give prices <b>and</b> pay for the rebook: Agoda about 4–5%, Booking.com 4% through CJ.<sup style="color:var(--accent);font-size:10px;font-weight:600">3</sup></p>
+        <p class="push sm"><b>Catch</b> — only their own inventory, so coverage is partial.</p>
+      </div>
+      <div class="card pad">
+        <span class="lbl">Later</span>
+        <h3>TBO</h3>
+        <p>India-strong B2B hotel API. The route to owning the booking and refunding automatically — needs agency registration and KYC.<sup style="color:var(--accent);font-size:10px;font-weight:600">4</sup></p>
+        <p class="push sm"><b>Blocked on</b> — company, GST, approval.</p>
+      </div>
+    </div>
+
+    <div class="strip" style="background:rgba(232,96,60,.07)">
+      <span class="rule" style="background:var(--ink)"></span>
+      <span><b>Do not plan on Amadeus.</b> The Self-Service API portal shut down on 17 July 2026. Any tutorial recommending it is out of date.<sup style="color:var(--accent);font-size:10px;font-weight:600">5</sup></span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><sup>1</sup> <a href="https://toolradar.com/tools/serpapi/pricing" target="_blank" rel="noopener">SerpApi pricing</a></span>
+    <span><sup>2</sup> <a href="https://www.makcorps.com/blog/?p=3181" target="_blank" rel="noopener">MakCorps</a> · <a href="https://apify.com/kestrel/google-hotels-prices" target="_blank" rel="noopener">Apify</a></span>
+    <span><sup>3</sup> <a href="https://www.creator-hero.com/fr/blog/agoda-affiliate-program-in-depth-review-pros-and-cons" target="_blank" rel="noopener">Agoda</a> · <a href="https://www.makeinfluence.com/en/academy/booking-coms-affiliate-program-how-travel-creators-earn-commission" target="_blank" rel="noopener">Booking.com</a></span>
+    <span><sup>4</sup> <a href="https://www.vervotech.com/hub/regional/hotel-api-india/" target="_blank" rel="noopener">Vervotech</a></span>
+    <span><sup>5</sup> <a href="https://www.phocuswire.com/amadeus-shut-down-self-service-apis-portal-developers" target="_blank" rel="noopener">PhocusWire</a></span>
+  </div>
+</section>

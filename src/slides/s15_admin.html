@@ -1,0 +1,75 @@
+<!-- ============ 15 · ADMIN DASHBOARD ============ -->
+<section class="slide d15">
+  <div class="slide-head">
+    <div class="eyebrow">Product · 15</div>
+    <div class="row">
+      <h2 class="title">The tool <em>we</em> run it from.</h2>
+      <p class="lede" style="max-width:33ch;padding-bottom:7px">Internal only. Two things matter here: which AI reads need a human, and whether the price source is healthy.</p>
+    </div>
+  </div>
+
+  <div class="body" style="display:grid;grid-template-columns:1.62fr 1fr;gap:18px">
+    <div class="dash">
+      <div class="side">
+        <div class="it on">Overview</div>
+        <div class="it">Users &amp; sign-ups</div>
+        <div class="it">Bookings tracked</div>
+        <div class="it">Alerts &amp; rebooks</div>
+        <div class="it">Extraction queue</div>
+        <div class="it">Price-source health</div>
+        <div class="it">API cost</div>
+        <div class="it">Payments</div>
+        <div class="it">Feedback</div>
+        <div class="it">Support inbox</div>
+      </div>
+      <div class="main">
+        <div class="krow">
+          <div class="kpi"><span class="k">Tracked</span><span class="v">248</span></div>
+          <div class="kpi"><span class="k">Alerts sent</span><span class="v">61</span></div>
+          <div class="kpi"><span class="k">Rebook rate</span><span class="v b">38%</span></div>
+          <div class="kpi"><span class="k">Saved</span><span class="v b">₹1.9L</span></div>
+        </div>
+        <div class="panes">
+          <div class="pane">
+            <span class="ph">Extraction review queue — low confidence</span>
+            <div class="qrow"><span class="nm">Hotel Sai Residency, Shirdi — 2 dates found</span><span class="tag b">Review</span></div>
+            <div class="qrow"><span class="nm">Screenshot unreadable — user 9xxxx412</span><span class="tag b">Review</span></div>
+            <div class="qrow"><span class="nm">OYO 4421 — no Google token matched</span><span class="tag">Manual</span></div>
+            <div class="qrow"><span class="nm">Treebo Trend, Pune — room type unclear</span><span class="tag">Manual</span></div>
+            <div class="hr"></div>
+            <span class="ph">Price-source health · SerpApi</span>
+            <div class="bars">
+              <i style="height:72%"></i><i style="height:86%"></i><i style="height:80%"></i><i style="height:94%"></i>
+              <i style="height:61%"></i><i style="height:88%"></i><i style="height:91%"></i><i class="on" style="height:97%"></i>
+            </div>
+            <div class="qrow"><span class="nm">Success rate, last 8 days</span><span class="tag b">97%</span></div>
+          </div>
+          <div class="pane">
+            <span class="ph">Cost per tracked booking</span>
+            <div class="qrow"><span class="nm">Price checks (~20)</span><span class="tag">₹26</span></div>
+            <div class="qrow"><span class="nm">AI + WhatsApp</span><span class="tag">₹1</span></div>
+            <div class="qrow"><span class="nm">Razorpay</span><span class="tag">₹3.5</span></div>
+            <div class="hr"></div>
+            <div class="qrow"><span class="nm" style="color:var(--ink);font-weight:500">Total</span><span class="tag b">₹30</span></div>
+            <div class="hr"></div>
+            <span class="ph">Support inbox</span>
+            <div class="qrow"><span class="nm">Wrong hotel matched</span><span class="tag">3</span></div>
+            <div class="qrow"><span class="nm">Fee dispute</span><span class="tag">1</span></div>
+            <div class="qrow"><span class="nm">Data deletion</span><span class="tag">2</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card sm"><h3 class="s">Extraction review queue</h3><p class="sm">Every low-confidence AI read lands here. A human fixes it; the correction trains the matcher.</p></div>
+      <div class="card sm"><h3 class="s">Price-source health</h3><p class="sm">Success rate and failures by hotel. If this falls, alerts stop silently.</p></div>
+      <div class="card sm"><h3 class="s">API cost per booking</h3><p class="sm">Watched daily. The business only works while this stays near ₹30.</p></div>
+      <div class="card sm"><h3 class="s">The rest</h3><p class="sm">Sign-up funnel, bookings by status, rebook rate, total saved, payments, ratings, support inbox.</p></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Figures shown are placeholders for layout. Cost per booking is derived on slide 25.</span>
+  </div>
+</section>

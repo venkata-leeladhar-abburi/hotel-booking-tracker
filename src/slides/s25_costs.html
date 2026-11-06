@@ -1,0 +1,56 @@
+<!-- ============ 25 · COSTS AND UNIT ECONOMICS ============ -->
+<section class="slide">
+  <div class="slide-head">
+    <div class="eyebrow">Money · 25</div>
+    <div class="row">
+      <h2 class="title">What it costs to run.</h2>
+      <p class="lede" style="max-width:36ch;padding-bottom:7px">Current list prices, November 2026. SerpApi is the only line that matters — the rest is rounding.</p>
+    </div>
+  </div>
+
+  <div class="body" style="display:grid;grid-template-columns:1.62fr 1fr;gap:18px">
+    <div class="card pad" style="padding:18px 16px 14px">
+      <table class="t">
+        <thead><tr><th style="width:26%">What</th><th style="width:22%">Tool</th><th>Price today</th></tr></thead>
+        <tbody>
+          <tr class="me"><td class="k">Hotel prices</td><td>SerpApi</td><td class="n">Free 250/mo · $25/1k · <b>$75/5k</b> · $150/15k<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup></td></tr>
+          <tr><td class="k">Reading bookings</td><td>Gemini 3.6 Flash</td><td class="n">$0.75 / $3.75 per 1M tokens, rising 1 Jan 2027<sup style="color:var(--accent);font-size:10px;font-weight:600">2</sup></td></tr>
+          <tr><td class="k">Forwarded email</td><td>Cloudflare Email Routing</td><td class="n">Free, unlimited inbound<sup style="color:var(--accent);font-size:10px;font-weight:600">3</sup></td></tr>
+          <tr><td class="k">Alerts</td><td>WhatsApp Cloud API</td><td class="n">Utility ≈ ₹0.115 a message, plus 18% GST<sup style="color:var(--accent);font-size:10px;font-weight:600">4</sup></td></tr>
+          <tr><td class="k">Payments</td><td>Razorpay</td><td class="n">2% + 18% GST ≈ 2.36% · no platform fee, first ₹5L for 90 days<sup style="color:var(--accent);font-size:10px;font-weight:600">5</sup></td></tr>
+          <tr><td class="k">Server and database</td><td>DigitalOcean, Bangalore</td><td class="n">Droplet $4–6/mo · managed Postgres from $15/mo<sup style="color:var(--accent);font-size:10px;font-weight:600">6</sup></td></tr>
+          <tr><td class="k">App stores</td><td>Google Play · Apple</td><td class="n">$25 once · $99 a year</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div class="card pad stat">
+        <span class="lbl">MVP, up to ~250 bookings a month</span>
+        <span class="v">₹9–10k</span>
+        <span class="d">a month. The <b>$75 SerpApi plan</b> is the biggest line.</span>
+      </div>
+      <div class="card pad">
+        <span class="lbl" style="margin-bottom:4px">Per tracked booking</span>
+        <table class="t" style="margin-top:2px">
+          <tbody>
+            <tr><td style="padding:5px 0">~20 price checks</td><td class="n" style="padding:5px 0;text-align:right">₹26</td></tr>
+            <tr><td style="padding:5px 0">AI read + WhatsApp</td><td class="n" style="padding:5px 0;text-align:right">₹1</td></tr>
+            <tr><td style="padding:5px 0">Razorpay</td><td class="n" style="padding:5px 0;text-align:right">₹3.5</td></tr>
+            <tr><td class="k" style="padding:5px 0">Total cost</td><td class="n" style="padding:5px 0;text-align:right;color:var(--ink);font-weight:500">≈ ₹30</td></tr>
+            <tr><td class="k" style="padding:5px 0;color:var(--accent)">Earned when it saves</td><td class="n" style="padding:5px 0;text-align:right;color:var(--accent);font-weight:500">≈ ₹150</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><sup>1</sup> <a href="https://toolradar.com/tools/serpapi/pricing" target="_blank" rel="noopener">SerpApi</a></span>
+    <span><sup>2</sup> <a href="https://www.chatbase.co/blog/gemini-3-6-flash" target="_blank" rel="noopener">Gemini pricing</a></span>
+    <span><sup>3</sup> <a href="https://developers.cloudflare.com/email-service/platform/pricing/" target="_blank" rel="noopener">Cloudflare</a></span>
+    <span><sup>4</sup> <a href="https://montymobile.com/blogs/whatsapp-business-api-pricing-in-india-inr-rates-gst-and-the-2026-currency-migration-deadline" target="_blank" rel="noopener">Monty Mobile</a></span>
+    <span><sup>5</sup> <a href="https://razorpay.com/blog/razorpay-shopify-payment-gateway-pricing-explained/" target="_blank" rel="noopener">Razorpay</a></span>
+    <span><sup>6</sup> <a href="https://kuberns.com/blogs/digitalocean-pricing/" target="_blank" rel="noopener">DigitalOcean</a></span>
+  </div>
+</section>

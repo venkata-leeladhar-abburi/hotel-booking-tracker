@@ -1,0 +1,64 @@
+<!-- ============ 23 · HOW TRACKERS STAY LEGAL ============ -->
+<section class="slide dark d23">
+  <div class="slide-head">
+    <div class="eyebrow">Legal · 23</div>
+    <div class="row">
+      <h2 class="title">Who got this right,<br>and who got <em>sued</em>.</h2>
+      <p class="lede" style="max-width:31ch;padding-bottom:7px">Five cases that draw the line we intend to stay well inside.</p>
+    </div>
+  </div>
+
+  <div class="body" style="display:grid;grid-template-columns:1.18fr 1fr;gap:14px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="card sm">
+        <span class="lbl" style="color:#7FE0A8">Did it right</span>
+        <h3 class="s">CamelCamelCamel</h3>
+        <p class="sm">Tracks Amazon prices through Amazon's own licensed API — never scraped.<sup style="color:var(--accent-soft);font-size:10px;font-weight:600">1</sup></p>
+      </div>
+      <div class="card sm">
+        <span class="lbl" style="color:#7FE0A8">Did it right</span>
+        <h3 class="s">BuyHatke</h3>
+        <p class="sm">An extension reads the page the user is already on, funded by affiliate links.<sup style="color:var(--accent-soft);font-size:10px;font-weight:600">2</sup></p>
+      </div>
+      <div class="card sm">
+        <span class="lbl" style="color:#F2A48E">Lost</span>
+        <h3 class="s">hiQ v LinkedIn</h3>
+        <p class="sm">Won on public data, lost on the terms — fake accounts, <b>$500k judgment</b>.<sup style="color:var(--accent-soft);font-size:10px;font-weight:600">3</sup></p>
+      </div>
+      <div class="card sm">
+        <span class="lbl" style="color:#7FE0A8">Allowed</span>
+        <h3 class="s">Meta v Bright Data</h3>
+        <p class="sm"><b>Logged-out public data</b> did not breach Meta's terms. The line is logging in.<sup style="color:var(--accent-soft);font-size:10px;font-weight:600">4</sup></p>
+      </div>
+      <div class="card sm" style="grid-column:1 / -1">
+        <span class="lbl" style="color:#F2A48E">Still running</span>
+        <h3 class="s">Ryanair v Booking.com</h3>
+        <p class="sm">Scraping <b>behind a login</b> drew a US jury verdict, overturned in 2025 and under appeal. Unsettled law — so we avoid logins entirely.<sup style="color:var(--accent-soft);font-size:10px;font-weight:600">5</sup></p>
+      </div>
+    </div>
+
+    <div class="card pad" style="padding:18px 16px 14px">
+      <h3 style="margin-bottom:2px">Our rules</h3>
+      <table class="t">
+        <thead><tr><th>Practice</th><th style="width:72px;text-align:center">Allowed</th><th style="width:88px;text-align:center">Not allowed</th></tr></thead>
+        <tbody>
+          <tr><td>Read prices through SerpApi</td><td style="text-align:center"><span class="yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111216" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></td><td style="text-align:center"><span class="no"></span></td></tr>
+          <tr><td>Use affiliate APIs for prices</td><td style="text-align:center"><span class="yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111216" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></td><td style="text-align:center"><span class="no"></span></td></tr>
+          <tr><td>Send rebooks via affiliate links</td><td style="text-align:center"><span class="yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111216" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></td><td style="text-align:center"><span class="no"></span></td></tr>
+          <tr><td>Log into a user's account</td><td style="text-align:center"><span class="no"></span></td><td style="text-align:center"><span class="yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111216" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></td></tr>
+          <tr><td>Fake accounts or CAPTCHA bypass</td><td style="text-align:center"><span class="no"></span></td><td style="text-align:center"><span class="yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111216" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></td></tr>
+          <tr><td>Scrape behind a login</td><td style="text-align:center"><span class="no"></span></td><td style="text-align:center"><span class="yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#111216" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span style="color:rgba(255,255,255,.55)">Not legal advice — a startup lawyer reviews this before launch.</span>
+    <span><sup>1</sup> <a href="https://softwareengineeringdaily.com/2019/05/24/camelcamelcamel-amazon-price-tracker-with-daniel-green/" target="_blank" rel="noopener">SE Daily</a></span>
+    <span><sup>2</sup> <a href="https://yourstory.com/2013/09/buyhatke-iit-kgp-price-discovery-ecommerce" target="_blank" rel="noopener">YourStory</a></span>
+    <span><sup>3</sup> <a href="https://www.zwillgen.com/alternative-data/hiq-v-linkedin-wrapped-up-web-scraping-lessons-learned/" target="_blank" rel="noopener">ZwillGen</a></span>
+    <span><sup>4</sup> <a href="https://www.fbm.com/technology/publications/major-decision-affects-law-of-scraping-and-online-data-collection-meta-platforms-v-bright-data/" target="_blank" rel="noopener">Farella Braun + Martel</a></span>
+    <span><sup>5</sup> <a href="https://blog.ericgoldman.org/archives/2025/03/court-overturns-a-bad-jury-verdict-against-scraping-ryanair-v-booking-guest-blog-post.htm" target="_blank" rel="noopener">Eric Goldman</a></span>
+  </div>
+</section>

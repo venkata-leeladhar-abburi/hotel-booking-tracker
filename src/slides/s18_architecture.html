@@ -1,0 +1,54 @@
+<!-- ============ 18 · ARCHITECTURE ============ -->
+<section class="slide">
+  <div class="slide-head">
+    <div class="eyebrow">How we build it · 18</div>
+    <div class="row">
+      <h2 class="title">How it works, end to end.</h2>
+      <p class="lede" style="max-width:36ch;padding-bottom:7px">Two ways in, one database, one scheduler. The loop that matters runs once a day per booking.</p>
+    </div>
+  </div>
+
+  <div class="body" style="gap:14px">
+    <div class="arch" style="flex:1">
+      <div class="acol">
+        <span class="acol-h">In</span>
+        <div class="anode b"><span class="t">App</span><span class="s">Flutter · Android and iOS</span></div>
+        <div class="anode b"><span class="t">WhatsApp</span><span class="s">Cloud API webhook</span></div>
+        <div class="anode"><span class="t">Forwarded email</span><span class="s">Cloudflare Email Routing</span></div>
+      </div>
+      <div class="acol">
+        <span class="acol-h">Understand</span>
+        <div class="anode"><span class="t">Backend API</span><span class="s">NestJS or FastAPI · auth, bookings</span></div>
+        <div class="anode b"><span class="t">AI extraction</span><span class="s">Gemini Flash reads the booking</span></div>
+        <div class="anode"><span class="t">Guest confirms</span><span class="s">Nothing is tracked unconfirmed</span></div>
+      </div>
+      <div class="acol">
+        <span class="acol-h">Remember</span>
+        <div class="anode"><span class="t">PostgreSQL</span><span class="s">Bookings, prices, alerts, savings</span></div>
+        <div class="anode"><span class="t">Redis</span><span class="s">Cache and job state</span></div>
+        <div class="anode"><span class="t">Scheduler</span><span class="s">BullMQ · one daily job per booking</span></div>
+      </div>
+      <div class="acol">
+        <span class="acol-h">Compare</span>
+        <div class="anode b"><span class="t">Price API</span><span class="s">SerpApi reads Google Hotels</span></div>
+        <div class="anode"><span class="t">Compare engine</span><span class="s">Same hotel, dates, room — against paid price</span></div>
+        <div class="anode"><span class="t">Threshold</span><span class="s">Alert only above a margin</span></div>
+      </div>
+      <div class="acol">
+        <span class="acol-h">Tell and watch</span>
+        <div class="anode b"><span class="t">Notifier</span><span class="s">WhatsApp template · push · email</span></div>
+        <div class="anode"><span class="t">Razorpay</span><span class="s">Charged after a confirmed saving</span></div>
+        <div class="anode"><span class="t">Admin dashboard</span><span class="s">Next.js · reads all of the above</span></div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <span class="rule"></span>
+      <span>The whole system is <b>one daily loop</b>: wake up, ask for today's price, compare against what the guest paid, and stay quiet unless it is worth their time.</span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Component choices and prices on slides 21 and 25</span>
+  </div>
+</section>

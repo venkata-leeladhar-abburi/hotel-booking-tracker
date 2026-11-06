@@ -1,0 +1,56 @@
+<!-- ============ 19 · WHERE PRICES COME FROM ============ -->
+<section class="slide">
+  <div class="slide-head">
+    <div class="eyebrow">How we build it · 19</div>
+    <div class="row">
+      <h2 class="title">Where the prices come from.</h2>
+      <p class="lede" style="max-width:34ch;padding-bottom:7px">The booking sites already publish their prices to Google. We read Google, through a licensed API — we never scrape a booking site.</p>
+    </div>
+  </div>
+
+  <div class="body" style="gap:16px">
+    <div class="flow" style="flex:none">
+      <div class="fstep">
+        <span class="n">1</span>
+        <h4>Booking sites publish</h4>
+        <p>MakeMyTrip, Goibibo, Booking.com and Agoda send their rates to Google Hotels themselves.<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup></p>
+      </div>
+      <div class="fstep on">
+        <span class="n">2</span>
+        <h4>SerpApi reads Google</h4>
+        <p>A property token returns featured prices and the price per site, by room.<sup style="color:var(--accent);font-size:10px;font-weight:600">2</sup></p>
+      </div>
+      <div class="fstep">
+        <span class="n">3</span>
+        <h4>We compare</h4>
+        <p>Same hotel, same dates, against the amount the guest actually paid.</p>
+      </div>
+      <div class="fstep on">
+        <span class="n">4</span>
+        <h4>We alert</h4>
+        <p>Only when the gap clears a margin and the deadline has not passed.</p>
+      </div>
+    </div>
+
+    <div class="g2" style="flex:1">
+      <div class="card pad">
+        <h3>Why this works in India</h3>
+        <p style="font-size:15.5px">MakeMyTrip appears in <b>52% of sponsored and over 70% of organic</b> Google Hotels listings in India.<sup style="color:var(--accent);font-size:10px;font-weight:600">3</sup> Reading Google reaches the dominant seller without touching its site.</p>
+        <div class="hr push"></div>
+        <p class="sm">It is also the legal position we want: a licensed API, public data, no login, no fake accounts.</p>
+      </div>
+      <div class="card pad">
+        <h3>What it cannot see</h3>
+        <p style="font-size:15.5px">Coupons, bank offers and wallet cashback are invisible. Some small and OYO-only properties are missing. We get the <b>cheapest room per site</b>, not every room type.</p>
+        <div class="hr push"></div>
+        <p class="sm" style="color:var(--accent)"><b>Validation gate — before any code:</b> run 20 real hotels through the free 250 searches and measure how many match. If coverage is poor, the idea stops here.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><sup>1</sup> Google: prices come from partners — <a href="https://support.google.com/travel/answer/6276008" target="_blank" rel="noopener">Google Travel Help</a></span>
+    <span><sup>2</sup> property_token → prices per site — <a href="https://serpapi.com/blog/scrape-hotel-prices-using-python-and-a-simple-api/" target="_blank" rel="noopener">SerpApi</a></span>
+    <span><sup>3</sup> 52% sponsored / 70%+ organic — <a href="https://skift.com/2025/01/09/makemytrip-dominates-travel-search-in-india-can-it-hold-on-to-its-lead/" target="_blank" rel="noopener">Skift</a></span>
+  </div>
+</section>

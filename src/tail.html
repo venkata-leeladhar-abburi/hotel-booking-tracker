@@ -1,0 +1,48 @@
+</div></div>
+
+<nav id="hud" aria-label="Slide navigation">
+  <button id="prev" aria-label="Previous slide"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+  <span id="count"><b>1</b> / 3</span>
+  <button id="next" aria-label="Next slide"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+</nav>
+
+<script>
+/* ======= ONE PLACE TO RENAME THE PRODUCT ======= */
+const PRODUCT_NAME = "StayWatch";
+const PRODUCT_DOMAIN = PRODUCT_NAME.toLowerCase().replace(/[^a-z0-9]/g, "") + ".in";
+document.querySelectorAll("[data-name]").forEach(el => el.textContent = PRODUCT_NAME);
+document.querySelectorAll("[data-domain]").forEach(el => el.textContent = PRODUCT_DOMAIN);
+document.title = PRODUCT_NAME + " — internal discussion deck";
+
+const slides = [...document.querySelectorAll(".slide")];
+const countEl = document.getElementById("count");
+let i = 0;
+function show(n){
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides.forEach((s,k) => s.classList.toggle("is-active", k === i));
+  countEl.innerHTML = "<b>" + (i+1) + "</b> / " + slides.length;
+  history.replaceState(null, "", "#" + (i+1));
+}
+document.getElementById("prev").onclick = e => { e.stopPropagation(); show(i-1); };
+document.getElementById("next").onclick = e => { e.stopPropagation(); show(i+1); };
+addEventListener("keydown", e => {
+  if (["ArrowRight","ArrowDown"," ","PageDown"].includes(e.key)){ e.preventDefault(); show(i+1); }
+  if (["ArrowLeft","ArrowUp","PageUp"].includes(e.key)){ e.preventDefault(); show(i-1); }
+  if (e.key === "Home") show(0);
+  if (e.key === "End") show(slides.length-1);
+});
+addEventListener("click", e => {
+  if (e.target.closest("#hud, a")) return;
+  show(i + (e.clientX < innerWidth*0.3 ? -1 : 1));
+});
+const canvas = document.getElementById("canvas");
+function fit(){ canvas.style.transform = "scale(" + Math.min(innerWidth/1280, innerHeight/720)*0.96 + ")"; }
+addEventListener("resize", fit); fit();
+show(parseInt(location.hash.slice(1)) - 1 || 0);
+/* nav pill: visible while the mouse moves, out of the way while presenting */
+const hud = document.getElementById("hud"); let hudT;
+function wake(){ hud.classList.add("show"); clearTimeout(hudT); hudT = setTimeout(() => { if (!hud.matches(":hover")) hud.classList.remove("show"); }, 2200); }
+addEventListener("mousemove", wake); hud.addEventListener("mouseleave", wake); wake();
+</script>
+</body>
+</html>
