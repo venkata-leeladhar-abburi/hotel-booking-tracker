@@ -25,9 +25,9 @@
       <div class="main">
         <div class="krow">
           <div class="kpi"><span class="k">Tracked</span><span class="v">248</span></div>
-          <div class="kpi"><span class="k">Alerts sent</span><span class="v">61</span></div>
-          <div class="kpi"><span class="k">Rebook rate</span><span class="v b">38%</span></div>
-          <div class="kpi"><span class="k">Saved</span><span class="v b">₹1.9L</span></div>
+          <div class="kpi"><span class="k">Alerts sent</span><span class="v">56</span></div>
+          <div class="kpi"><span class="k">Fees in</span><span class="v b" data-calc="admin-fees">₹24.6k</span></div>
+          <div class="kpi"><span class="k">Guests saved</span><span class="v b">₹34k</span></div>
         </div>
         <div class="panes">
           <div class="pane">
@@ -48,14 +48,14 @@
             <span class="ph">Cost per tracked booking</span>
             <div class="qrow"><span class="nm">Price checks (~20)</span><span class="tag">₹26</span></div>
             <div class="qrow"><span class="nm">AI + WhatsApp</span><span class="tag">₹1</span></div>
-            <div class="qrow"><span class="nm">Razorpay</span><span class="tag">₹3.5</span></div>
+            <div class="qrow"><span class="nm">Razorpay on a <span data-calc="example">₹99</span> fee</span><span class="tag" data-calc="admin-raz">₹2.3</span></div>
             <div class="hr"></div>
-            <div class="qrow"><span class="nm" style="color:var(--ink);font-weight:500">Total</span><span class="tag b">₹30</span></div>
+            <div class="qrow"><span class="nm" style="color:var(--ink);font-weight:500">Total</span><span class="tag b" data-calc="admin-total">₹29</span></div>
             <div class="hr"></div>
-            <span class="ph">Support inbox</span>
-            <div class="qrow"><span class="nm">Wrong hotel matched</span><span class="tag">3</span></div>
-            <div class="qrow"><span class="nm">Fee dispute</span><span class="tag">1</span></div>
-            <div class="qrow"><span class="nm">Data deletion</span><span class="tag">2</span></div>
+            <span class="ph">Alert buttons pressed</span>
+            <div class="qrow"><span class="nm">Wrong hotel</span><span class="tag">3</span></div>
+            <div class="qrow"><span class="nm">Price not there</span><span class="tag">2</span></div>
+            <div class="qrow"><span class="nm">Stop tracking</span><span class="tag">4</span></div>
           </div>
         </div>
       </div>
@@ -64,12 +64,12 @@
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="card sm"><h3 class="s">Extraction review queue</h3><p class="sm">Every low-confidence AI read lands here. A human fixes it; the correction trains the matcher.</p></div>
       <div class="card sm"><h3 class="s">Price-source health</h3><p class="sm">Success rate and failures by hotel. If this falls, alerts stop silently.</p></div>
-      <div class="card sm"><h3 class="s">API cost per booking</h3><p class="sm">Watched daily. The business only works while this stays near ₹30.</p></div>
+      <div class="card sm"><h3 class="s">API cost per trip</h3><p class="sm">Watched daily. Our margin is the trip fee minus this number.</p></div>
       <div class="card sm"><h3 class="s">The rest</h3><p class="sm">Sign-up funnel, bookings by status, rebook rate, total saved, payments, ratings, support inbox.</p></div>
     </div>
   </div>
 
   <div class="foot">
-    <span>Figures shown are placeholders for layout. Cost per booking is derived on slide 25.</span>
+    <span>Figures shown are placeholders for layout. Cost per booking is derived on slide 26.</span>
   </div>
 </section>

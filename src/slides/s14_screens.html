@@ -73,7 +73,7 @@
 
       <!-- ADD -->
       <div style="display:flex;flex-direction:column;align-items:center;height:100%">
-        <p class="pcap"><b>Add a booking</b> — four routes in, whichever app is open</p>
+        <p class="pcap"><b>Add a booking</b> — four routes in, one fee per trip</p>
         <div class="phone grow">
           <div class="scr">
             <div class="sbar">
@@ -110,7 +110,7 @@
                 <div><div class="t">WhatsApp us</div><div class="u">No install needed</div></div>
                 <span class="ch"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
               </div>
-              <p class="pnote" style="margin-top:auto;padding-bottom:12px">Only <b>free-cancellation</b> bookings can be rebooked — we will tell you if yours is not.</p>
+              <p class="pnote" style="margin-top:auto;padding-bottom:12px"><b><span data-calc="example">₹99</span></b> watches this trip until its free-cancellation deadline. Refunded if we cannot track it.</p>
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@
 
       <!-- ALERT -->
       <div style="display:flex;flex-direction:column;align-items:center;height:100%">
-        <p class="pcap"><b>Price-drop alert</b> — the saving, the deadline, one button</p>
+        <p class="pcap"><b>Price-drop alert</b> — what was seen, where, when; book first</p>
         <div class="phone grow">
           <div class="scr">
             <div class="sbar">
@@ -130,16 +130,16 @@
             </div>
             <div class="phd">
               <div>
-                <div class="ttl">Price dropped</div>
-                <div class="sub">Found 4 minutes ago</div>
+                <div class="ttl">Lower price seen</div>
+                <div class="sub">Checked twice · 3:10 pm</div>
               </div>
-              <span class="pill b" style="margin-top:4px">Act now</span>
+              
             </div>
             <div class="pbody">
               <div class="psave" style="background:var(--accent)">
-                <span class="k" style="color:rgba(255,255,255,.7)">You can save</span>
+                <span class="k" style="color:rgba(255,255,255,.7)">Below what you paid</span>
                 <span class="v">₹1,400</span>
-                <span class="m" style="color:rgba(255,255,255,.72)">₹6,400 paid · ₹5,000 now</span>
+                <span class="m" style="color:rgba(255,255,255,.72)">₹5,000 on Agoda · you paid ₹6,400</span>
               </div>
               <div class="pcard">
                 <div class="top">
@@ -149,17 +149,17 @@
                     <div class="s">Tirupati · 14–16 Dec</div>
                   </div>
                 </div>
-                <div class="s" style="margin-top:-2px">Same room, cheaper on Agoda</div>
+                <div class="s" style="margin-top:-2px">Same room · refundable rate</div>
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1px">
                   <span class="s" style="margin:0">Cancel free until 12 Dec</span>
                   <span class="save">3 days left</span>
                 </div>
-                <div class="pbar warn"><i style="width:88%"></i></div>
               </div>
             </div>
-            <div style="padding:10px 12px 13px;flex:none;display:flex;flex-direction:column;gap:5px">
-              <div class="pbtn b">Rebook at ₹5,000</div>
-              <div class="pbtn ghost">Then cancel the old one</div>
+            <div style="padding:8px 12px 11px;flex:none;display:flex;flex-direction:column;gap:5px">
+              <div class="pbtn b">Book the new room first</div>
+              <div class="pbtn ghost" style="padding:3px">Check it, then cancel the old one</div>
+              <div class="pchips"><span>Wrong hotel</span><span>Price not there</span><span>Stop</span></div>
             </div>
           </div>
         </div>
@@ -170,5 +170,6 @@
 
   <div class="foot">
     <span>Mock-ups built in HTML and CSS for this deck — not screenshots of a running build</span>
+    <span data-calc="example-note">₹99 is an example fee inside the ₹50–150 range</span>
   </div>
 </section>

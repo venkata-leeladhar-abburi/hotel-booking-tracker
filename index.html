@@ -295,6 +295,46 @@ table.t td{
 }
 table.t tr:last-child td{border-bottom:none}
 table.t td.k{color:var(--ink);font-weight:500}
+table.t.cmp th{padding:0 0 7px;font-size:10.5px}
+table.t.cmp th:not(:first-child),table.t.cmp td:not(:first-child){text-align:right}
+table.t.cmp td{padding:6px 0;font-size:13.5px}
+table.t.cmp tr.fee td{color:var(--accent);border-top:1px solid var(--line)}
+table.t.cmp.fe td{padding:9px 0;font-size:14px}
+/* funnel bars */
+.fn{display:flex;flex-direction:column;gap:14px}
+.fr{display:grid;grid-template-columns:150px 1fr 52px;align-items:center;gap:14px}
+.fl{font-size:14px;line-height:1.3;color:var(--ink-2);font-weight:400}
+.fb{height:22px;background:#E9E9E5;border-radius:6px;overflow:hidden;display:block}
+.fb i{display:block;height:100%;background:var(--ink);border-radius:6px}
+.fb i.rg{background:rgba(20,21,26,.35);position:relative}
+.fb i.rg b{position:absolute;inset:0 auto 0 0;background:var(--ink);border-radius:6px}
+.fr.on .fb i.rg{background:rgba(31,95,216,.35)}
+.fr.on .fb i.rg b{background:var(--accent)}
+.fr.on .fl,.fr.on .fv{color:var(--accent);font-weight:500}
+.fv{font-size:15px;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500;text-align:right}
+/* accuracy ranges */
+.acc{display:flex;flex-direction:column;gap:18px}
+.ar{display:grid;grid-template-columns:215px 1fr 66px;align-items:center;gap:16px}
+.at{display:flex;flex-direction:column;gap:3px}
+.at b{font-size:15.5px;font-weight:500;color:var(--ink);letter-spacing:-.008em}
+.at span{font-size:13px;color:var(--muted);font-weight:300;line-height:1.35}
+.ab{position:relative;height:12px;background:#E9E9E5;border-radius:6px}
+.ab i{position:absolute;top:0;bottom:0;border-radius:6px;background:var(--ink);min-width:8px}
+.ar.weak .ab i{background:var(--accent)}
+.av{font-size:17px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink);text-align:right}
+.ar.weak .av,.ar.weak .at b{color:var(--accent)}
+.ascale{display:grid;grid-template-columns:215px 1fr 66px;gap:16px;margin-top:-8px}
+.ascale .sc{display:flex;justify-content:space-between}
+.ascale i{font-style:normal;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* verdict chips */
+.vchip{align-self:flex-start;display:inline-flex;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em;background:var(--ink);color:#fff}
+.vchip.u{background:var(--accent)}
+/* editable trip fee */
+[data-fee]{cursor:text;border-radius:5px;transition:background .15s,box-shadow .15s}
+[data-fee]:hover{background:rgba(31,95,216,.10);box-shadow:0 0 0 3px rgba(31,95,216,.10)}
+.hero [data-fee]:hover,.dark [data-fee]:hover{background:rgba(255,255,255,.14);box-shadow:0 0 0 3px rgba(255,255,255,.14)}
+.fee-input{font:inherit;line-height:inherit;letter-spacing:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--accent);border-radius:6px;padding:0 4px;margin:0 1px;outline:none;width:auto;text-align:inherit}
+@media print{[data-fee]:hover{background:none;box-shadow:none}}
 table.t td.n{font-variant-numeric:tabular-nums}
 table.t tr.me td{background:rgba(31,95,216,.055)}
 table.t tr.me td.k{color:var(--accent)}
@@ -420,6 +460,8 @@ table.t tr.me td.k{color:var(--accent)}
 .ptab span{font-size:8.5px;font-weight:600;letter-spacing:.01em}
 .pnote{font-size:9.5px;color:var(--muted);line-height:1.4;padding:2px 2px 0;flex:none}
 .pnote b{color:var(--ink-2);font-weight:600}
+.pchips{display:flex;gap:4px;justify-content:center;flex:none}
+.pchips span{font-size:8.5px;font-weight:600;color:var(--ink-2);background:var(--card);border-radius:999px;padding:4px 8px}
 /* caption under each phone */
 .pcap{font-size:13px;color:var(--muted);text-align:center;margin-bottom:11px;font-weight:300;line-height:1.4;flex:none}
 .pcap b{color:var(--ink);font-weight:500}
@@ -578,7 +620,7 @@ table.t tr.me td.k{color:var(--accent)}
         <div class="hero-facts">
           <div class="fact"><span class="k">Where</span><span class="v">App and WhatsApp</span></div>
           <div class="fact"><span class="k">Works with</span><span class="v">Any booking site</span></div>
-          <div class="fact"><span class="k">You pay</span><span class="v">Only when you save</span></div>
+          <div class="fact"><span class="k">You pay</span><span class="v"><span data-fee>₹50–150</span> per trip</span></div>
         </div>
         <div class="hero-meta">Internal discussion · November 2026<br>Working name — not final</div>
       </div>
@@ -644,7 +686,7 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 </section>
 
-<!-- ============ 2 · WHO FACES IT ============ -->
+<!-- ============ 3 · WHO FACES IT ============ -->
 <section class="slide d3">
   <div class="slide-head">
     <div class="eyebrow">The idea · 03</div>
@@ -713,7 +755,7 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="fstep">
         <span class="n">1</span>
         <h4>Add the booking</h4>
-        <p>Forward the confirmation email, send a screenshot, paste a link, or message it on WhatsApp.</p>
+        <p>Forward the confirmation email, send a screenshot, paste a link, or message it on WhatsApp. Pay the trip fee by UPI.</p>
         <span class="lbl push">About 20 seconds</span>
       </div>
       <div class="fstep">
@@ -731,8 +773,8 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="fstep on">
         <span class="n">4</span>
         <h4>Rebook and save</h4>
-        <p>Guided steps: book the cheaper room first, then cancel the old one. The saving is recorded.</p>
-        <span class="lbl push">The guest keeps most of it</span>
+        <p>Guided steps: book the cheaper room first, check it, then cancel the old one. The saving is recorded.</p>
+        <span class="lbl push">The guest keeps all of it</span>
       </div>
     </div>
 
@@ -824,9 +866,9 @@ table.t tr.me td.k{color:var(--accent)}
         <div class="lbl">WhatsApp — no install</div>
         <div class="chat tight" style="background:#fff;border:1px solid var(--line);flex:1;min-height:0;overflow:hidden">
           <div class="msg out">Screenshot of the booking<span class="t">10:02</span></div>
-          <div class="msg in">Read as <b>Marigold Residency, Tirupati</b> · 14–16 Dec · ₹6,400. Correct?<span class="t">10:02</span></div>
-          <div class="msg out">Yes<span class="t">10:03</span></div>
-          <div class="msg in" style="border-color:rgba(31,95,216,.4)"><b>₹5,000 now — down ₹1,400.</b> Cancel free until 12 Dec.<span class="t">9 days later</span></div>
+          <div class="msg in">Read as <b>Marigold Residency, Tirupati</b> · 14–16 Dec · ₹6,400. Correct? Watching it costs <span data-calc="example">₹99</span>.<span class="t">10:02</span></div>
+          <div class="msg out">Yes · paid <span data-calc="example">₹99</span> by UPI<span class="t">10:03</span></div>
+          <div class="msg in" style="border-color:rgba(31,95,216,.4)"><b>Seen ₹5,000 on Agoda</b> at 3:10 pm — ₹1,400 below what you paid. Book it first, then cancel.<span class="t">9 days later</span></div>
         </div>
         <p style="font-size:13.5px;line-height:1.42;color:var(--muted);font-weight:300">Alerts are <b style="color:var(--ink-2);font-weight:500">pre-approved utility templates</b>, as WhatsApp policy requires.<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup></p>
       </div>
@@ -836,6 +878,7 @@ table.t tr.me td.k{color:var(--accent)}
 
   <div class="foot">
     <span><sup>1</sup> WhatsApp bans general-purpose AI bots from 15 Jan 2026; task-specific bots remain allowed — <a href="https://respond.io/blog/whatsapp-general-purpose-chatbots-ban" target="_blank" rel="noopener">respond.io</a></span>
+    <span data-calc="example-note">₹99 is an example fee inside the ₹50–150 range</span>
   </div>
 </section>
 
@@ -855,7 +898,7 @@ table.t tr.me td.k{color:var(--accent)}
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
         <span class="w">Day 0</span>
         <h4>Booking added</h4>
-        <p>Forwards the confirmation. We read hotel, dates, room, price and the cancellation deadline, and ask them to confirm.</p>
+        <p>Forwards the confirmation, confirms what we read, and pays the trip fee by UPI.</p>
       </div>
       <div class="tnode">
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
@@ -867,7 +910,7 @@ table.t tr.me td.k{color:var(--accent)}
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
         <span class="w">Day 9</span>
         <h4>Drop found · alert</h4>
-        <p>₹5,000 against ₹6,400 booked. Alert names the saving, the site, and the days left to cancel free.</p>
+        <p>₹5,000 seen on Agoda, confirmed by a second check. Alert names the site, the time, and the days left to cancel free.</p>
       </div>
       <div class="tnode b">
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
@@ -879,7 +922,7 @@ table.t tr.me td.k{color:var(--accent)}
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
         <span class="w">Day 10</span>
         <h4>Saving recorded</h4>
-        <p>₹1,400 added to their total. Our fee is charged only now, against a saving that actually happened.</p>
+        <p>₹1,400 added to their total — all of it theirs. The fee was paid once, on day 0.</p>
       </div>
       <div class="tnode">
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
@@ -933,7 +976,7 @@ table.t tr.me td.k{color:var(--accent)}
     <div class="g3" style="flex:none">
       <div class="card sm"><h3 class="s">105,000+ properties</h3><p class="sm">across 2,080 Indian cities on one platform<sup style="color:var(--accent);font-size:10px;font-weight:600">2</sup></p></div>
       <div class="card sm"><h3 class="s">Pilgrimage is a named driver</h3><p class="sm">of the domestic growth, in the company's own words<sup style="color:var(--accent);font-size:10px;font-weight:600">2</sup></p></div>
-      <div class="card sm" style="background:rgba(31,95,216,.08)"><h3 class="s" style="color:var(--accent)">We need a sliver</h3><p class="sm">250 tracked bookings a month covers the MVP's costs</p></div>
+      <div class="card sm" style="background:rgba(31,95,216,.08)"><h3 class="s" style="color:var(--accent)">We need a sliver</h3><p class="sm">About <span data-calc="breakeven">75–245</span> paid trips a month cover the MVP's running cost</p></div>
     </div>
   </div>
 
@@ -969,12 +1012,12 @@ table.t tr.me td.k{color:var(--accent)}
       </div>
       <div class="card pad">
         <div style="display:flex;align-items:baseline;justify-content:space-between"><h3>DreamCheaper</h3><span class="lbl">Berlin</span></div>
-        <p>Cancels and rebooks <b>automatically</b>, and charges 20% of the saving. The model we would grow into, not start with.<sup style="color:var(--accent);font-size:10px;font-weight:600">3</sup></p>
+        <p>Cancels and rebooks <b>automatically</b>, and charges 20% of the saving. Automatic rebooking is where we could grow; a cut of the saving is not our model.<sup style="color:var(--accent);font-size:10px;font-weight:600">3</sup></p>
         <span class="lbl push">Automatic rebooking</span>
       </div>
       <div class="card pad">
         <div style="display:flex;align-items:baseline;justify-content:space-between"><h3>HotelSlash</h3><span class="lbl">United States</span></div>
-        <p>A <b>$29.95 a year</b> membership. Tracks and alerts; the traveller rebooks. Subscription up front is a hard sell in India.<sup style="color:var(--accent);font-size:10px;font-weight:600">4</sup></p>
+        <p>A <b>$29.95 a year</b> membership. Tracks and alerts; the traveller rebooks. A yearly fee is a bigger ask in India than one small fee per trip.<sup style="color:var(--accent);font-size:10px;font-weight:600">4</sup></p>
         <span class="lbl push">Subscription</span>
       </div>
       <div class="card pad">
@@ -1050,7 +1093,7 @@ table.t tr.me td.k{color:var(--accent)}
           </tr>
           <tr class="me">
             <td class="k" data-name>StayWatch</td><td>India · any booking site</td><td>Email, screenshot, link or WhatsApp</td>
-            <td>Guided, not automatic</td><td>10–15% of the saving</td><td>Share of savings + affiliate</td>
+            <td>Guided, not automatic</td><td><span data-fee>₹50–150</span> per trip</td><td>Trip fee + affiliate</td>
           </tr>
         </tbody>
       </table>
@@ -1092,7 +1135,7 @@ table.t tr.me td.k{color:var(--accent)}
     <div style="display:flex;flex-direction:column;gap:14px">
       <div class="card pad" style="flex:1">
         <h3>Why not the top-right corner</h3>
-        <p>Automatic refunds need the booking to be ours. That is slide 27's work — company, GST, TBO — not week one.</p>
+        <p>Automatic refunds need the booking to be ours. That is slide 29's work — company, GST, TBO — not week one.</p>
       </div>
       <div class="card pad" style="flex:1;background:rgba(31,95,216,.08)">
         <h3 style="color:var(--accent)">What we hold instead</h3>
@@ -1125,20 +1168,20 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="card pad">
         <span class="idx">01</span>
         <h3>A free competitor</h3>
-        <p>Pruvo is free and Onto refunds the whole drop. Charging 10–15% looks worse side by side.</p>
-        <p class="push" style="color:var(--ink-2)"><b>Mitigation</b> — first 3 bookings free; we charge only against a real saving.</p>
+        <p>Pruvo is free and Onto refunds the whole drop. Paying <span data-fee>₹50–150</span> before any drop is a harder sell.</p>
+        <p class="push" style="color:var(--ink-2)"><b>Mitigation</b> — fee scaled to the booking; automatic refund if we cannot track it.</p>
       </div>
       <div class="card pad">
         <span class="idx">02</span>
         <h3>We cannot see every price</h3>
         <p>Coupons, bank offers and cashback never reach the price feed, so a "drop" may not beat what was actually paid.</p>
-        <p class="push" style="color:var(--ink-2)"><b>Mitigation</b> — compare against the amount paid; alert only above a margin.</p>
+        <p class="push" style="color:var(--ink-2)"><b>Mitigation</b> — compare against the amount paid; alert only on drops of ₹500 and 5% or more.</p>
       </div>
       <div class="card pad">
         <span class="idx">03</span>
         <h3>Matching the right room</h3>
-        <p>"Deluxe Double" on one site is "Superior King" on another. A wrong match is a false alert.</p>
-        <p class="push" style="color:var(--ink-2)"><b>Mitigation</b> — match on property token plus dates; show what we compared.</p>
+        <p>"Deluxe Double" on one site is "Superior King" on another. The weak point: 60–80% today.</p>
+        <p class="push" style="color:var(--ink-2)"><b>Mitigation</b> — same site, same room, refundable rate, checked twice — or no alert.</p>
       </div>
       <div class="card pad">
         <span class="idx">04</span>
@@ -1156,7 +1199,7 @@ table.t tr.me td.k{color:var(--accent)}
         <span class="idx">06</span>
         <h3>Trust</h3>
         <p>We ask a stranger to forward their name, dates and what they paid. A lot for a new brand.</p>
-        <p class="push" style="color:var(--ink-2)"><b>Mitigation</b> — never ask for passwords or OTPs; delete on request, stated up front.</p>
+        <p class="push" style="color:var(--ink-2)"><b>Mitigation</b> — never ask for passwords or OTPs; one-tap deletion, stated up front.</p>
       </div>
     </div>
   </div>
@@ -1195,18 +1238,18 @@ table.t tr.me td.k{color:var(--accent)}
         <p>Set a price <b>before</b> booking and we tell you when the room reaches it — the one feature that also works on non-refundable plans.</p>
       </div>
       <div class="card pad" style="background:rgba(31,95,216,.08)">
-        <h3 style="color:var(--accent)">Pay only when you save</h3>
-        <p>No subscription, no charge when nothing drops. The first three bookings are free, so the first alert costs nothing to receive.</p>
+        <h3 style="color:var(--accent)">The saving stays with the guest</h3>
+        <p>One fee of <span data-fee>₹50–150</span> per trip, paid once. No subscription, and never a cut of what the guest saves.</p>
       </div>
       <div class="card pad">
         <h3>Affiliate rebooking</h3>
-        <p>The rebook goes through our link, so a successful saving earns twice — our share, plus 4–5% commission.<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup></p>
+        <p>The rebook goes through our link, so a successful saving also earns 4–5% commission — paid by the site, not the guest.<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup></p>
       </div>
     </div>
 
     <div class="strip">
       <span class="rule"></span>
-      <span>Said in one line: <b>the only India-first tracker that works with bookings you already made, reaches you on WhatsApp, and charges nothing unless you save.</b></span>
+      <span>Said in one line: <b>the only India-first tracker that works with bookings you already made, reaches you on WhatsApp, and leaves every rupee of the saving with the guest.</b></span>
     </div>
   </div>
 
@@ -1232,16 +1275,16 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="card sm"><span class="idx">03</span><h3 class="s">AI reads the booking</h3><p class="sm">Gemini Flash extracts hotel, dates, room and price — the guest confirms before we start.</p></div>
       <div class="card sm"><span class="idx">04</span><h3 class="s">Hotel matching</h3><p class="sm">Resolve the property to a Google Hotels token so we recheck the same place.</p></div>
       <div class="card sm"><span class="idx">05</span><h3 class="s">Scheduled checks</h3><p class="sm">A daily job per booking, stopping at the cancellation deadline.</p></div>
-      <div class="card sm" style="background:rgba(31,95,216,.08)"><span class="idx" style="color:var(--accent)">06</span><h3 class="s" style="color:var(--accent)">Drop alerts</h3><p class="sm">WhatsApp template, push and email — whichever the guest chose.</p></div>
+      <div class="card sm" style="background:rgba(31,95,216,.08)"><span class="idx" style="color:var(--accent)">06</span><h3 class="s" style="color:var(--accent)">Drop alerts</h3><p class="sm">WhatsApp, push or email — sent only after a second check confirms the drop.</p></div>
       <div class="card sm"><span class="idx">07</span><h3 class="s">Guided rebook</h3><p class="sm">Book the cheaper room first, then cancel. Shown in that order, with the link.</p></div>
       <div class="card sm" style="background:rgba(31,95,216,.08)"><span class="idx" style="color:var(--accent)">08</span><h3 class="s" style="color:var(--accent)">Saved-so-far counter</h3><p class="sm">The running total. The reason anyone opens the app twice.</p></div>
       <div class="card sm"><span class="idx">09</span><h3 class="s">Deadline reminders</h3><p class="sm">A nudge before free cancellation expires, drop or no drop.</p></div>
-      <div class="card sm"><span class="idx">10</span><h3 class="s">Razorpay UPI</h3><p class="sm">Charged after a saving is confirmed, never before.</p></div>
+      <div class="card sm"><span class="idx">10</span><h3 class="s">Trip fee by UPI</h3><p class="sm"><span data-fee>₹50–150</span> through Razorpay when a booking is added. Refunded if we cannot track it.</p></div>
     </div>
   </div>
 
   <div class="foot">
-    <span>Scope for the 8-week build on slide 27. Costs for each of these are on slide 25.</span>
+    <span>Scope for the 8-week build on slide 29. Costs for each of these are on slide 26.</span>
   </div>
 </section>
 
@@ -1320,7 +1363,7 @@ table.t tr.me td.k{color:var(--accent)}
 
       <!-- ADD -->
       <div style="display:flex;flex-direction:column;align-items:center;height:100%">
-        <p class="pcap"><b>Add a booking</b> — four routes in, whichever app is open</p>
+        <p class="pcap"><b>Add a booking</b> — four routes in, one fee per trip</p>
         <div class="phone grow">
           <div class="scr">
             <div class="sbar">
@@ -1357,7 +1400,7 @@ table.t tr.me td.k{color:var(--accent)}
                 <div><div class="t">WhatsApp us</div><div class="u">No install needed</div></div>
                 <span class="ch"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
               </div>
-              <p class="pnote" style="margin-top:auto;padding-bottom:12px">Only <b>free-cancellation</b> bookings can be rebooked — we will tell you if yours is not.</p>
+              <p class="pnote" style="margin-top:auto;padding-bottom:12px"><b><span data-calc="example">₹99</span></b> watches this trip until its free-cancellation deadline. Refunded if we cannot track it.</p>
             </div>
           </div>
         </div>
@@ -1365,7 +1408,7 @@ table.t tr.me td.k{color:var(--accent)}
 
       <!-- ALERT -->
       <div style="display:flex;flex-direction:column;align-items:center;height:100%">
-        <p class="pcap"><b>Price-drop alert</b> — the saving, the deadline, one button</p>
+        <p class="pcap"><b>Price-drop alert</b> — what was seen, where, when; book first</p>
         <div class="phone grow">
           <div class="scr">
             <div class="sbar">
@@ -1377,16 +1420,16 @@ table.t tr.me td.k{color:var(--accent)}
             </div>
             <div class="phd">
               <div>
-                <div class="ttl">Price dropped</div>
-                <div class="sub">Found 4 minutes ago</div>
+                <div class="ttl">Lower price seen</div>
+                <div class="sub">Checked twice · 3:10 pm</div>
               </div>
-              <span class="pill b" style="margin-top:4px">Act now</span>
+              
             </div>
             <div class="pbody">
               <div class="psave" style="background:var(--accent)">
-                <span class="k" style="color:rgba(255,255,255,.7)">You can save</span>
+                <span class="k" style="color:rgba(255,255,255,.7)">Below what you paid</span>
                 <span class="v">₹1,400</span>
-                <span class="m" style="color:rgba(255,255,255,.72)">₹6,400 paid · ₹5,000 now</span>
+                <span class="m" style="color:rgba(255,255,255,.72)">₹5,000 on Agoda · you paid ₹6,400</span>
               </div>
               <div class="pcard">
                 <div class="top">
@@ -1396,17 +1439,17 @@ table.t tr.me td.k{color:var(--accent)}
                     <div class="s">Tirupati · 14–16 Dec</div>
                   </div>
                 </div>
-                <div class="s" style="margin-top:-2px">Same room, cheaper on Agoda</div>
+                <div class="s" style="margin-top:-2px">Same room · refundable rate</div>
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1px">
                   <span class="s" style="margin:0">Cancel free until 12 Dec</span>
                   <span class="save">3 days left</span>
                 </div>
-                <div class="pbar warn"><i style="width:88%"></i></div>
               </div>
             </div>
-            <div style="padding:10px 12px 13px;flex:none;display:flex;flex-direction:column;gap:5px">
-              <div class="pbtn b">Rebook at ₹5,000</div>
-              <div class="pbtn ghost">Then cancel the old one</div>
+            <div style="padding:8px 12px 11px;flex:none;display:flex;flex-direction:column;gap:5px">
+              <div class="pbtn b">Book the new room first</div>
+              <div class="pbtn ghost" style="padding:3px">Check it, then cancel the old one</div>
+              <div class="pchips"><span>Wrong hotel</span><span>Price not there</span><span>Stop</span></div>
             </div>
           </div>
         </div>
@@ -1417,6 +1460,7 @@ table.t tr.me td.k{color:var(--accent)}
 
   <div class="foot">
     <span>Mock-ups built in HTML and CSS for this deck — not screenshots of a running build</span>
+    <span data-calc="example-note">₹99 is an example fee inside the ₹50–150 range</span>
   </div>
 </section>
 
@@ -1447,9 +1491,9 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="main">
         <div class="krow">
           <div class="kpi"><span class="k">Tracked</span><span class="v">248</span></div>
-          <div class="kpi"><span class="k">Alerts sent</span><span class="v">61</span></div>
-          <div class="kpi"><span class="k">Rebook rate</span><span class="v b">38%</span></div>
-          <div class="kpi"><span class="k">Saved</span><span class="v b">₹1.9L</span></div>
+          <div class="kpi"><span class="k">Alerts sent</span><span class="v">56</span></div>
+          <div class="kpi"><span class="k">Fees in</span><span class="v b" data-calc="admin-fees">₹24.6k</span></div>
+          <div class="kpi"><span class="k">Guests saved</span><span class="v b">₹34k</span></div>
         </div>
         <div class="panes">
           <div class="pane">
@@ -1470,14 +1514,14 @@ table.t tr.me td.k{color:var(--accent)}
             <span class="ph">Cost per tracked booking</span>
             <div class="qrow"><span class="nm">Price checks (~20)</span><span class="tag">₹26</span></div>
             <div class="qrow"><span class="nm">AI + WhatsApp</span><span class="tag">₹1</span></div>
-            <div class="qrow"><span class="nm">Razorpay</span><span class="tag">₹3.5</span></div>
+            <div class="qrow"><span class="nm">Razorpay on a <span data-calc="example">₹99</span> fee</span><span class="tag" data-calc="admin-raz">₹2.3</span></div>
             <div class="hr"></div>
-            <div class="qrow"><span class="nm" style="color:var(--ink);font-weight:500">Total</span><span class="tag b">₹30</span></div>
+            <div class="qrow"><span class="nm" style="color:var(--ink);font-weight:500">Total</span><span class="tag b" data-calc="admin-total">₹29</span></div>
             <div class="hr"></div>
-            <span class="ph">Support inbox</span>
-            <div class="qrow"><span class="nm">Wrong hotel matched</span><span class="tag">3</span></div>
-            <div class="qrow"><span class="nm">Fee dispute</span><span class="tag">1</span></div>
-            <div class="qrow"><span class="nm">Data deletion</span><span class="tag">2</span></div>
+            <span class="ph">Alert buttons pressed</span>
+            <div class="qrow"><span class="nm">Wrong hotel</span><span class="tag">3</span></div>
+            <div class="qrow"><span class="nm">Price not there</span><span class="tag">2</span></div>
+            <div class="qrow"><span class="nm">Stop tracking</span><span class="tag">4</span></div>
           </div>
         </div>
       </div>
@@ -1486,60 +1530,52 @@ table.t tr.me td.k{color:var(--accent)}
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="card sm"><h3 class="s">Extraction review queue</h3><p class="sm">Every low-confidence AI read lands here. A human fixes it; the correction trains the matcher.</p></div>
       <div class="card sm"><h3 class="s">Price-source health</h3><p class="sm">Success rate and failures by hotel. If this falls, alerts stop silently.</p></div>
-      <div class="card sm"><h3 class="s">API cost per booking</h3><p class="sm">Watched daily. The business only works while this stays near ₹30.</p></div>
+      <div class="card sm"><h3 class="s">API cost per trip</h3><p class="sm">Watched daily. Our margin is the trip fee minus this number.</p></div>
       <div class="card sm"><h3 class="s">The rest</h3><p class="sm">Sign-up funnel, bookings by status, rebook rate, total saved, payments, ratings, support inbox.</p></div>
     </div>
   </div>
 
   <div class="foot">
-    <span>Figures shown are placeholders for layout. Cost per booking is derived on slide 25.</span>
+    <span>Figures shown are placeholders for layout. Cost per booking is derived on slide 26.</span>
   </div>
 </section>
 
-<!-- ============ 16 · SUPPORT PLAYBOOK ============ -->
+<!-- ============ 16 · SAFE WITHOUT A SUPPORT TEAM ============ -->
 <section class="slide">
   <div class="slide-head">
     <div class="eyebrow">Product · 16</div>
     <div class="row">
-      <h2 class="title">When it goes wrong, which it will.</h2>
-      <p class="lede" style="max-width:33ch;padding-bottom:7px">A draft to argue with, not policy. Deadlines make support urgent in a way most apps never face.</p>
+      <h2 class="title">Safe with no support <em>team</em>.</h2>
+      <p class="lede" style="max-width:34ch;padding-bottom:7px">There is no support staff at launch. So the product has to stay safe even when an alert is wrong.</p>
     </div>
   </div>
 
-  <div class="body" style="display:grid;grid-template-columns:1fr 1.5fr;gap:18px">
+  <div class="body" style="display:grid;grid-template-columns:1fr 1.7fr;gap:18px">
     <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="card pad">
-        <h3>Response targets</h3>
-        <p><b>Anything with a deadline inside 48 hours comes first.</b></p>
-        <p>WhatsApp under 2 hours in waking hours · everything else same day.</p>
+      <div class="card pad" style="background:rgba(31,95,216,.08);flex:1">
+        <span class="lbl" style="color:var(--accent)">The rule on every alert</span>
+        <h3 style="color:var(--accent);font-size:23px;line-height:1.22">Book the new room first. Check it. Then cancel the old one.</h3>
+        <p class="push">A wrong alert then costs the guest a few minutes — <b>never money, never their room</b>. This protects us more than anything else.</p>
       </div>
-      <div class="card pad" style="background:rgba(31,95,216,.08)">
-        <h3 style="color:var(--accent)">The hard rule</h3>
-        <p>We never ask for a card number, an OTP or a booking-site password. Support staff cannot ask either.</p>
-      </div>
-      <div class="card pad">
-        <h3>Escalation and learning</h3>
-        <p>Deadline risk goes to the founder on call. Every case is logged so the matcher improves.</p>
+      <div class="card pad stat" style="flex:none">
+        <span class="lbl">Support target</span>
+        <span class="v">1–3</span>
+        <span class="d">issues per 100 trips, almost all closed by the buttons on the alert.</span>
       </div>
     </div>
 
-    <div class="card pad" style="padding:18px 16px 14px">
-      <table class="t">
-        <thead><tr><th style="width:27%">Case</th><th style="width:46%">What we say</th><th style="width:27%">What we do</th></tr></thead>
-        <tbody>
-          <tr><td class="k">Wrong hotel matched</td><td>"We compared the wrong property — that is our mistake."</td><td>Re-match by hand, no fee, re-run the check</td></tr>
-          <tr><td class="k">Price not found</td><td>"This hotel is not on our price source yet."</td><td>Flag for manual watch, tell them honestly</td></tr>
-          <tr><td class="k">False alert</td><td>"The room we found was not the same room."</td><td>Refund any fee, log it against the matcher</td></tr>
-          <tr><td class="k">Fee or refund dispute</td><td>"If you did not save, you do not pay."</td><td>Refund first, investigate afterwards</td></tr>
-          <tr><td class="k">Cancel-and-rebook help</td><td>"Book the new room first, then cancel the old one."</td><td>Walk them through it, stay on chat until done</td></tr>
-          <tr><td class="k">Data deletion</td><td>"Deleted, and here is confirmation."</td><td>Remove within the DPDP window, confirm in writing</td></tr>
-        </tbody>
-      </table>
+    <div class="g2" style="grid-template-rows:repeat(3,1fr);gap:14px">
+      <div class="card sm"><span class="idx">01</span><h3 class="s">Check twice</h3><p class="sm">Re-check the price just before sending. Alert only if the second check agrees.</p></div>
+      <div class="card sm"><span class="idx">02</span><h3 class="s">Real drops only</h3><p class="sm">At least <b>₹500 and at least 5%</b> below what the guest paid.</p></div>
+      <div class="card sm"><span class="idx">03</span><h3 class="s">Same room, or silence</h3><p class="sm">Same site, same room name, refundable rate. Not sure? Don't send.</p></div>
+      <div class="card sm"><span class="idx">04</span><h3 class="s">Careful words</h3><p class="sm">"Price seen at ₹5,000 on Agoda at 3:10 pm" — never "You will save ₹1,400".</p></div>
+      <div class="card sm"><span class="idx">05</span><h3 class="s">Buttons, not tickets</h3><p class="sm"><b>Wrong hotel · Price not there · Stop tracking</b>. Each fixes itself and teaches the matcher.</p></div>
+      <div class="card sm"><span class="idx">06</span><h3 class="s">One-tap deletion</h3><p class="sm">The trip and its data go in one tap. We never ask for a card number, OTP or password.</p></div>
     </div>
   </div>
 
   <div class="foot">
-    <span>Guidance to finalise before the closed beta — not fixed policy. Deletion duties under the DPDP Act are on slide 22.</span>
+    <span>Guidance to finalise before the beta — not fixed policy. Deletion duties under the DPDP Act are on slide 23.</span>
   </div>
 </section>
 
@@ -1586,7 +1622,7 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 
   <div class="foot">
-    <span>Sequencing is on slide 27. Nothing in the "later" row starts before 100 users and proven savings.</span>
+    <span>Sequencing is on slide 29. Nothing in the "later" row starts before 100 users and proven savings.</span>
   </div>
 </section>
 
@@ -1605,7 +1641,7 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="acol">
         <span class="acol-h">In</span>
         <div class="anode b"><span class="t">App</span><span class="s">Flutter · Android and iOS</span></div>
-        <div class="anode b"><span class="t">WhatsApp</span><span class="s">Cloud API webhook</span></div>
+        <div class="anode b"><span class="t">WhatsApp</span><span class="s">AiSensy webhook</span></div>
         <div class="anode"><span class="t">Forwarded email</span><span class="s">Cloudflare Email Routing</span></div>
       </div>
       <div class="acol">
@@ -1623,13 +1659,13 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="acol">
         <span class="acol-h">Compare</span>
         <div class="anode b"><span class="t">Price API</span><span class="s">SerpApi reads Google Hotels</span></div>
-        <div class="anode"><span class="t">Compare engine</span><span class="s">Same hotel, dates, room — against paid price</span></div>
-        <div class="anode"><span class="t">Threshold</span><span class="s">Alert only above a margin</span></div>
+        <div class="anode"><span class="t">Compare engine</span><span class="s">Same hotel, room and refundable rate — against paid price</span></div>
+        <div class="anode"><span class="t">Threshold</span><span class="s">₹500 and 5% or more, confirmed by a second check</span></div>
       </div>
       <div class="acol">
         <span class="acol-h">Tell and watch</span>
         <div class="anode b"><span class="t">Notifier</span><span class="s">WhatsApp template · push · email</span></div>
-        <div class="anode"><span class="t">Razorpay</span><span class="s">Charged after a confirmed saving</span></div>
+        <div class="anode"><span class="t">Razorpay</span><span class="s">Trip fee by UPI when a booking is added</span></div>
         <div class="anode"><span class="t">Admin dashboard</span><span class="s">Next.js · reads all of the above</span></div>
       </div>
     </div>
@@ -1641,7 +1677,7 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 
   <div class="foot">
-    <span>Component choices and prices on slides 21 and 25</span>
+    <span>Component choices and prices on slides 22 and 26</span>
   </div>
 </section>
 
@@ -1755,10 +1791,62 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 </section>
 
-<!-- ============ 21 · TECH STACK ============ -->
+<!-- ============ 21 · ALERT ACCURACY ============ -->
 <section class="slide">
   <div class="slide-head">
     <div class="eyebrow">How we build it · 21</div>
+    <div class="row">
+      <h2 class="title">How often the alert is <em>right</em>.</h2>
+      <p class="lede" style="max-width:36ch;padding-bottom:7px">Each alert passes three steps. Two are solid. The third — finding the same room and rate — is the weak point.</p>
+    </div>
+  </div>
+
+  <div class="body" style="display:grid;grid-template-columns:1.45fr 1fr;gap:18px">
+    <div class="card pad" style="gap:16px">
+      <span class="lbl">Likely accuracy, step by step</span>
+      <div class="acc">
+        <div class="ar">
+          <div class="at"><b>AI reads the booking</b><span>then the guest confirms it</span></div>
+          <div class="ab"><i style="left:97%;width:2%"></i></div>
+          <div class="av">~98%</div>
+        </div>
+        <div class="ar">
+          <div class="at"><b>Finds the right hotel</b><span>guest confirms the photo and address</span></div>
+          <div class="ab"><i style="left:95%;width:4%"></i></div>
+          <div class="av">95–99%</div>
+        </div>
+        <div class="ar weak">
+          <div class="at"><b>Finds the same room and rate</b><span>room type, meal plan, free cancellation, guests, taxes</span></div>
+          <div class="ab"><i style="left:60%;width:20%"></i></div>
+          <div class="av">60–80%</div>
+        </div>
+        <div class="ascale"><span></span><span class="sc"><i>0%</i><i>50%</i><i>100%</i></span><span></span></div>
+      </div>
+      <p class="push" style="font-size:14.5px">SerpApi returns the cheapest price per site — often a different room or a non-refundable rate. Sent unfiltered, <b>about 1 in 3 alerts would be wrong or unusable.</b></p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card pad stat" style="background:rgba(31,95,216,.08);flex:1">
+        <span class="lbl" style="color:var(--accent)">With the safeguards on slide 16</span>
+        <span class="v b" style="font-size:52px;margin-top:6px">90–95%</span>
+        <span class="d">of alerts correct — <b>under 5–10% false</b>. Every alert is checked twice and only sent when the room and rate match.</span>
+      </div>
+      <div class="card pad">
+        <h3>Never 100%</h3>
+        <p>Coupons, bank offers, member prices and cached prices never reach us. That is why every alert says <b>book first, check, then cancel</b>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Estimates, not measurements — the November validation on slide 29 measures them on 20 real hotels</span>
+  </div>
+</section>
+
+<!-- ============ 22 · TECH STACK ============ -->
+<section class="slide">
+  <div class="slide-head">
+    <div class="eyebrow">How we build it · 22</div>
     <div class="row">
       <h2 class="title">The stack.</h2>
       <p class="lede" style="max-width:40ch;padding-bottom:7px">Boring, cheap, and hosted in India. Every choice here is reversible except the database.</p>
@@ -1771,7 +1859,7 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="g4">
         <div class="tile"><span class="n">Flutter</span><span class="r">One codebase, Android and iOS</span></div>
         <div class="tile"><span class="n">Next.js</span><span class="r">Admin dashboard</span></div>
-        <div class="tile b"><span class="n">WhatsApp Cloud API</span><span class="r">Second front door and alerts</span></div>
+        <div class="tile b"><span class="n">WhatsApp via AiSensy</span><span class="r">Second front door and alerts</span></div>
         <div class="tile"><span class="n">Firebase</span><span class="r">Push notifications</span></div>
       </div>
     </div>
@@ -1802,14 +1890,14 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 
   <div class="foot">
-    <span>Prices for every paid item on slide 25. Hosting in the Bangalore region keeps personal data in India under the DPDP Act.</span>
+    <span>Prices for every paid item on slide 26. Hosting in the Bangalore region keeps personal data in India under the DPDP Act.</span>
   </div>
 </section>
 
-<!-- ============ 3 · LEGAL ============ -->
+<!-- ============ 23 · LEGAL ============ -->
 <section class="slide dark">
   <div class="slide-head">
-    <div class="eyebrow">Legal · 22</div>
+    <div class="eyebrow">Legal · 23</div>
     <div class="row">
       <h2 class="title">What the law lets us do —<br>and what we <em>will not</em> do.</h2>
       <p class="lede" style="max-width:31ch;padding-bottom:7px">Three rulebooks shape the product: how we read prices, how we hold data, how we message.</p>
@@ -1889,10 +1977,10 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 </section>
 
-<!-- ============ 23 · HOW TRACKERS STAY LEGAL ============ -->
+<!-- ============ 24 · HOW TRACKERS STAY LEGAL ============ -->
 <section class="slide dark d23">
   <div class="slide-head">
-    <div class="eyebrow">Legal · 23</div>
+    <div class="eyebrow">Legal · 24</div>
     <div class="row">
       <h2 class="title">Who got this right,<br>and who got <em>sued</em>.</h2>
       <p class="lede" style="max-width:31ch;padding-bottom:7px">Five cases that draw the line we intend to stay well inside.</p>
@@ -1954,65 +2042,66 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 </section>
 
-<!-- ============ 24 · BUSINESS MODEL ============ -->
+<!-- ============ 25 · BUSINESS MODEL ============ -->
 <section class="slide">
   <div class="slide-head">
-    <div class="eyebrow">Money · 24</div>
+    <div class="eyebrow">Money · 25</div>
     <div class="row">
-      <h2 class="title">We earn when the guest <em>wins</em>.</h2>
-      <p class="lede" style="max-width:33ch;padding-bottom:7px">No subscription. If nothing drops, nothing is owed — which is also the easiest thing to explain in an ad.</p>
+      <h2 class="title">We charge for the watching, not the <em>win</em>.</h2>
+      <p class="lede" style="max-width:34ch;padding-bottom:7px">One small fee per trip, paid when the booking goes in. Whatever the guest saves is theirs.</p>
     </div>
   </div>
 
   <div class="body" style="gap:16px">
     <div class="g3" style="flex:1">
       <div class="card pad" style="background:rgba(31,95,216,.08)">
-        <span class="lbl" style="color:var(--accent)">Primary</span>
-        <h3 style="color:var(--accent)">10–15% of the saving</h3>
-        <p>Charged only after a rebooking is confirmed. On a ₹1,000 saving that is ₹100–150, and the guest keeps the rest.</p>
+        <span class="lbl" style="color:var(--accent)">Primary · launch price</span>
+        <h3 style="color:var(--accent)"><span data-fee>₹50–150</span> per trip</h3>
+        <p>Paid by UPI when the booking is added, before tracking starts. Covers that trip until its free-cancellation deadline.</p>
         <div class="hr push"></div>
-        <p class="sm">The first <b>3 bookings are free</b>, so the first alert costs nothing and proves the product before any charge.</p>
+        <p class="sm" data-calc="fee-status">The range is set; the <b>exact fee is agreed after discussion</b>.</p>
       </div>
       <div class="card pad">
         <span class="lbl">Secondary</span>
         <h3>Affiliate on rebooks</h3>
         <p>The rebook goes through our link. Agoda pays about <b>4–5%</b> by volume, Booking.com <b>4%</b> on completed stays via CJ.<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup></p>
         <div class="hr push"></div>
-        <p class="sm">Earned on the same event as the fee, so a successful saving pays twice.</p>
+        <p class="sm">Paid by the booking site, never by the guest.</p>
       </div>
       <div class="card pad">
-        <span class="lbl">Small, early</span>
-        <h3>Target-price alert</h3>
-        <p>About <b>₹49</b> to watch a hotel before booking and alert at a price the guest names.</p>
+        <span class="lbl">What we never do</span>
+        <h3>Take a cut of the saving</h3>
+        <p>If the room drops ₹1,400, the guest keeps ₹1,400. No share, no subscription, no second charge.</p>
         <div class="hr push"></div>
-        <p class="sm">Matters because it is the only product that works for non-refundable bookings.</p>
+        <p class="sm">Nothing to prove after the fact, so no disputes over what was really saved.</p>
       </div>
     </div>
 
     <div class="g2" style="flex:none">
       <div class="card sm">
-        <h3 class="s">Later — B2B for travel agents</h3>
-        <p class="sm">Agents re-price client bookings in bulk and keep the difference. Pruvo's actual business, and it does not need consumer scale.</p>
+        <h3 class="s" data-calc="options-title">Setting the fee — three options to discuss</h3>
+        <p class="sm" data-calc="options"><b>Flat</b> ₹99 a trip · <b>By booking value</b> ₹50 under ₹5,000, ₹99 to ₹15,000, ₹150 above · <b>By nights</b> ₹50 a night, capped at ₹150.</p>
       </div>
       <div class="card sm" style="background:rgba(31,95,216,.08)">
-        <h3 class="s" style="color:var(--accent)">Unit economics, in one line</h3>
-        <p class="sm">About <b>₹30</b> to track a booking against about <b>₹150</b> earned when one saves — the full derivation is on the next slide.</p>
+        <h3 class="s" style="color:var(--accent)">Open question — what if nothing drops?</h3>
+        <p class="sm">Most trips will not (slide 27). Keep the fee, or carry it to the next trip. Either way, <b>refund automatically if we cannot track the hotel</b>.</p>
       </div>
     </div>
   </div>
 
   <div class="foot">
     <span><sup>1</sup> Agoda ~4–5% by volume — <a href="https://www.creator-hero.com/fr/blog/agoda-affiliate-program-in-depth-review-pros-and-cons" target="_blank" rel="noopener">Creator Hero</a> · Booking.com 4% via CJ — <a href="https://www.makeinfluence.com/en/academy/booking-coms-affiliate-program-how-travel-creators-earn-commission" target="_blank" rel="noopener">MakeInfluence</a></span>
+    <span>Fees shown before GST</span>
   </div>
 </section>
 
-<!-- ============ 25 · COSTS AND UNIT ECONOMICS ============ -->
+<!-- ============ 26 · COSTS AND UNIT ECONOMICS ============ -->
 <section class="slide">
   <div class="slide-head">
-    <div class="eyebrow">Money · 25</div>
+    <div class="eyebrow">Money · 26</div>
     <div class="row">
       <h2 class="title">What it costs to run.</h2>
-      <p class="lede" style="max-width:36ch;padding-bottom:7px">Current list prices, November 2026. SerpApi is the only line that matters — the rest is rounding.</p>
+      <p class="lede" style="max-width:36ch;padding-bottom:7px">Current list prices, November 2026. Fee and cost are now the same unit — one tracked trip.</p>
     </div>
   </div>
 
@@ -2024,29 +2113,31 @@ table.t tr.me td.k{color:var(--accent)}
           <tr class="me"><td class="k">Hotel prices</td><td>SerpApi</td><td class="n">Free 250/mo · $25/1k · <b>$75/5k</b> · $150/15k<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup></td></tr>
           <tr><td class="k">Reading bookings</td><td>Gemini 3.6 Flash</td><td class="n">$0.75 / $3.75 per 1M tokens, rising 1 Jan 2027<sup style="color:var(--accent);font-size:10px;font-weight:600">2</sup></td></tr>
           <tr><td class="k">Forwarded email</td><td>Cloudflare Email Routing</td><td class="n">Free, unlimited inbound<sup style="color:var(--accent);font-size:10px;font-weight:600">3</sup></td></tr>
-          <tr><td class="k">Alerts</td><td>WhatsApp Cloud API</td><td class="n">Utility ≈ ₹0.115 a message, plus 18% GST<sup style="color:var(--accent);font-size:10px;font-weight:600">4</sup></td></tr>
+          <tr><td class="k">WhatsApp</td><td>AiSensy, Basic plan</td><td class="n"><b>₹1,500/mo + 18% GST = ₹1,770 a month</b><sup style="color:var(--accent);font-size:10px;font-weight:600">7</sup> · plus ≈ ₹0.115 a utility message<sup style="color:var(--accent);font-size:10px;font-weight:600">4</sup></td></tr>
           <tr><td class="k">Payments</td><td>Razorpay</td><td class="n">2% + 18% GST ≈ 2.36% · no platform fee, first ₹5L for 90 days<sup style="color:var(--accent);font-size:10px;font-weight:600">5</sup></td></tr>
           <tr><td class="k">Server and database</td><td>DigitalOcean, Bangalore</td><td class="n">Droplet $4–6/mo · managed Postgres from $15/mo<sup style="color:var(--accent);font-size:10px;font-weight:600">6</sup></td></tr>
           <tr><td class="k">App stores</td><td>Google Play · Apple</td><td class="n">$25 once · $99 a year</td></tr>
         </tbody>
       </table>
+      <p class="push" style="font-size:13px;line-height:1.42;color:var(--muted);font-weight:300;padding:0 13px"><b style="color:var(--ink-2);font-weight:500">Smart checks</b> — fewer checks far from the deadline, more near it, and one check shared by guests at the same hotel and dates. 40–60% fewer searches is our estimate.</p>
     </div>
 
     <div style="display:flex;flex-direction:column;gap:11px">
       <div class="card pad stat">
-        <span class="lbl">MVP, up to ~250 bookings a month</span>
-        <span class="v">₹9–10k</span>
-        <span class="d">a month. The <b>$75 SerpApi plan</b> is the biggest line.</span>
+        <span class="lbl">MVP, up to ~250 trips a month</span>
+        <span class="v">₹10.8–11.8k</span>
+        <span class="d">a month, mostly <b>SerpApi and AiSensy</b>. Covered by about <b><span data-calc="breakeven">75–245</span> paid trips</b> at this fee.</span>
       </div>
       <div class="card pad">
-        <span class="lbl" style="margin-bottom:4px">Per tracked booking</span>
-        <table class="t" style="margin-top:2px">
+        <table class="t cmp">
+          <thead><tr><th>Per tracked trip</th><th>Today</th><th>Smart checks</th></tr></thead>
           <tbody>
-            <tr><td style="padding:5px 0">~20 price checks</td><td class="n" style="padding:5px 0;text-align:right">₹26</td></tr>
-            <tr><td style="padding:5px 0">AI read + WhatsApp</td><td class="n" style="padding:5px 0;text-align:right">₹1</td></tr>
-            <tr><td style="padding:5px 0">Razorpay</td><td class="n" style="padding:5px 0;text-align:right">₹3.5</td></tr>
-            <tr><td class="k" style="padding:5px 0">Total cost</td><td class="n" style="padding:5px 0;text-align:right;color:var(--ink);font-weight:500">≈ ₹30</td></tr>
-            <tr><td class="k" style="padding:5px 0;color:var(--accent)">Earned when it saves</td><td class="n" style="padding:5px 0;text-align:right;color:var(--accent);font-weight:500">≈ ₹150</td></tr>
+            <tr><td>Price checks</td><td class="n">₹26</td><td class="n">₹10–16</td></tr>
+            <tr><td>AI read + WhatsApp</td><td class="n">₹1</td><td class="n">₹1</td></tr>
+            <tr><td>Razorpay on the fee</td><td class="n" data-calc="raz">₹1.2–3.5</td><td class="n" data-calc="raz">₹1.2–3.5</td></tr>
+            <tr><td class="k">Cost</td><td class="n k" data-calc="cost-today">≈ ₹28–31</td><td class="n k" data-calc="cost-smart">≈ ₹12–21</td></tr>
+            <tr class="fee"><td class="k">Fee paid</td><td class="n k"><span data-fee>₹50–150</span></td><td class="n k"><span data-fee>₹50–150</span></td></tr>
+            <tr><td class="k">Left per trip</td><td class="n k" data-calc="left-today">₹20–120</td><td class="n k" data-calc="left-smart">₹30–135</td></tr>
           </tbody>
         </table>
       </div>
@@ -2060,13 +2151,65 @@ table.t tr.me td.k{color:var(--accent)}
     <span><sup>4</sup> <a href="https://montymobile.com/blogs/whatsapp-business-api-pricing-in-india-inr-rates-gst-and-the-2026-currency-migration-deadline" target="_blank" rel="noopener">Monty Mobile</a></span>
     <span><sup>5</sup> <a href="https://razorpay.com/blog/razorpay-shopify-payment-gateway-pricing-explained/" target="_blank" rel="noopener">Razorpay</a></span>
     <span><sup>6</sup> <a href="https://kuberns.com/blogs/digitalocean-pricing/" target="_blank" rel="noopener">DigitalOcean</a></span>
+    <span><sup>7</sup> <a href="https://aisensy.com/pricing" target="_blank" rel="noopener">AiSensy pricing</a></span>
   </div>
 </section>
 
-<!-- ============ 26 · GO TO MARKET ============ -->
+<!-- ============ 27 · A HUNDRED PAID TRIPS ============ -->
+<section class="slide">
+  <div class="slide-head">
+    <div class="eyebrow">Money · 27</div>
+    <div class="row">
+      <h2 class="title">A hundred paid trips, <em>honestly</em>.</h2>
+      <p class="lede" style="max-width:36ch;padding-bottom:7px">Most trips never drop. The fee has to feel fair to the guests who get nothing back, too.</p>
+    </div>
+  </div>
+
+  <div class="body" style="gap:16px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1;min-height:0">
+
+      <div class="card pad" style="gap:14px">
+        <span class="lbl">Out of 100 paid trips</span>
+        <div class="fn">
+          <div class="fr"><span class="fl">Trips watched</span><span class="fb"><i style="width:100%"></i></span><span class="fv">100</span></div>
+          <div class="fr"><span class="fl">See a price drop</span><span class="fb"><i style="width:40%"></i></span><span class="fv">~40</span></div>
+          <div class="fr"><span class="fl">Drop is the same room and rate</span><span class="fb"><i class="rg" style="width:25%"><b style="width:80%"></b></i></span><span class="fv">20–25</span></div>
+          <div class="fr on"><span class="fl">Guest rebooks</span><span class="fb"><i class="rg" style="width:15%"><b style="width:67%"></b></i></span><span class="fv">10–15</span></div>
+        </div>
+        <p class="push" style="font-size:14.5px">So about <b>85 of every 100</b> paying guests see no usable drop. What they bought is the watching — and the answer that they already had the best price.</p>
+      </div>
+
+      <div class="card pad" style="gap:10px">
+        <table class="t cmp fe" data-calc="per100">
+          <thead><tr><th>Per 100 paid trips</th><th>₹50 fee</th><th>₹100 fee</th><th>₹150 fee</th></tr></thead>
+          <tbody>
+            <tr><td>Fees collected</td><td class="n">₹5,000</td><td class="n">₹10,000</td><td class="n">₹15,000</td></tr>
+            <tr><td>Cost to watch, today</td><td class="n">₹2,800</td><td class="n">₹2,900</td><td class="n">₹3,100</td></tr>
+            <tr><td class="k">Left for us</td><td class="n k">₹2,200</td><td class="n k">₹7,100</td><td class="n k">₹11,900</td></tr>
+            <tr><td>Plus affiliate on rebooks</td><td class="n" colspan="3">₹1,000–1,500</td></tr>
+            <tr class="fee"><td class="k">Saved by the guests</td><td class="n k" colspan="3">₹10,000–21,000</td></tr>
+          </tbody>
+        </table>
+        <p class="push" style="font-size:14.5px" data-calc="guest-value">At <b>₹150</b> the guests, as a group, get back roughly what they paid. At <b>₹50</b> they get back 2–4 times as much.</p>
+      </div>
+
+    </div>
+
+    <div class="strip" style="margin-top:0">
+      <span class="rule"></span>
+      <span data-calc="fee-verdict">Every fee in the range is profitable for us. The question is what the guest feels — <b>keep the fee well below a typical saving</b>, which argues for ₹50–99 on smaller bookings.</span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Funnel and costs are our estimates, not measurements. Assumes a ₹1,000–1,400 average saving, a ₹5,000 average rebooking, and half of rebooks through an Agoda or Booking.com link at 4%.</span>
+  </div>
+</section>
+
+<!-- ============ 28 · GO TO MARKET ============ -->
 <section class="slide d26">
   <div class="slide-head">
-    <div class="eyebrow">Launch · 26</div>
+    <div class="eyebrow">Launch · 28</div>
     <div class="row">
       <h2 class="title">Getting the first <em>hundred</em>.</h2>
       <p class="lede" style="max-width:33ch;padding-bottom:7px">One number does the selling: the rupees a real person got back. Everything below is a way of showing it.</p>
@@ -2118,10 +2261,10 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 </section>
 
-<!-- ============ 27 · ROADMAP ============ -->
+<!-- ============ 29 · ROADMAP ============ -->
 <section class="slide">
   <div class="slide-head">
-    <div class="eyebrow">Launch · 27</div>
+    <div class="eyebrow">Launch · 29</div>
     <div class="row">
       <h2 class="title">The plan, with <em>gates</em>.</h2>
       <p class="lede" style="max-width:33ch;padding-bottom:7px">Each stage has something that must be true before the next one starts. The first gate can stop the whole idea.</p>
@@ -2154,16 +2297,16 @@ table.t tr.me td.k{color:var(--accent)}
       <div class="tnode b">
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
         <span class="w">Week 7–8</span>
-        <h4>Closed beta · 30 users</h4>
-        <p>People we can call. Every failure logged by hand.</p>
-        <p style="color:var(--accent);margin-top:2px"><b>Gate</b> — false alerts under 5%.</p>
+        <h4>Free beta · 30–100 users</h4>
+        <p>People we can reach directly. One segment — pilgrims or one city. MakeMyTrip, Booking.com and Agoda only.</p>
+        <p style="color:var(--accent);margin-top:2px"><b>Gate</b> — 90% of alerts correct.</p>
       </div>
       <div class="tnode b">
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
         <span class="w">Jan 2027</span>
-        <h4>100 users · savings proof</h4>
-        <p>Thirty real savings, with screenshots we can show.</p>
-        <p style="color:var(--accent);margin-top:2px"><b>Gate</b> — proof exists, or no launch.</p>
+        <h4>Paid launch · <span data-fee>₹50–150</span></h4>
+        <p>Fee agreed after discussion, switched on for new trips. Thirty real savings to show.</p>
+        <p style="color:var(--accent);margin-top:2px"><b>Gate</b> — false alerts under 5%, or no fee.</p>
       </div>
       <div class="tnode">
         <div class="dotline"><span class="dot"></span><span class="ln"></span></div>
@@ -2175,7 +2318,7 @@ table.t tr.me td.k{color:var(--accent)}
 
     <div class="strip bottom">
       <span class="rule"></span>
-      <span>Validation comes <b>before</b> design on purpose. The cheapest outcome available to us is finding out in November that the price data is not good enough.</span>
+      <span>Validation comes <b>before</b> design, and the beta is <b>free</b> on purpose: no payments means no payment complaints while the matcher is still learning.</span>
     </div>
   </div>
 
@@ -2184,10 +2327,10 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 </section>
 
-<!-- ============ 28 · SCALING FEATURES ============ -->
+<!-- ============ 30 · SCALING FEATURES ============ -->
 <section class="slide">
   <div class="slide-head">
-    <div class="eyebrow">Launch · 28</div>
+    <div class="eyebrow">Launch · 30</div>
     <div class="row">
       <h2 class="title">What this becomes if it <em>works</em>.</h2>
       <p class="lede" style="max-width:33ch;padding-bottom:7px">Each step removes work from the guest. The end state is that they never have to act at all.</p>
@@ -2239,10 +2382,10 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 </section>
 
-<!-- ============ 29 · METRICS ============ -->
+<!-- ============ 31 · METRICS ============ -->
 <section class="slide">
   <div class="slide-head">
-    <div class="eyebrow">Launch · 29</div>
+    <div class="eyebrow">Launch · 31</div>
     <div class="row">
       <h2 class="title">Eight numbers we watch.</h2>
       <p class="lede" style="max-width:36ch;padding-bottom:7px">Three of them can kill the business on their own. Those three have targets; the rest are for learning.</p>
@@ -2251,14 +2394,14 @@ table.t tr.me td.k{color:var(--accent)}
 
   <div class="body" style="gap:16px">
     <div class="g4" style="flex:1;grid-template-rows:1fr 1fr">
-      <div class="card pad stat"><span class="lbl">Volume</span><span class="v sm">Bookings tracked</span><span class="d push">The top of everything. Nothing else matters if this is flat.</span></div>
+      <div class="card pad stat"><span class="lbl">Volume</span><span class="v sm">Paid trips</span><span class="d push">The top of everything. Nothing else matters if this is flat.</span></div>
       <div class="card pad stat" style="background:rgba(31,95,216,.08)"><span class="lbl" style="color:var(--accent)">Does the idea hold</span><span class="v sm b">% with a drop</span><span class="d push">Pruvo's ~40% is the claim.<sup style="color:var(--accent);font-size:10px;font-weight:600">1</sup> Our own number decides whether this is a product.</span></div>
-      <div class="card pad stat"><span class="lbl">Size of the win</span><span class="v sm">Average ₹ saved</span><span class="d push">Sets the fee. Below about ₹400 a saving, 15% is not worth charging.</span></div>
+      <div class="card pad stat"><span class="lbl">Size of the win</span><span class="v sm">Average ₹ saved</span><span class="d push">Has to sit well above the fee, or guests stop paying for the next trip.</span></div>
       <div class="card pad stat" style="background:rgba(31,95,216,.08)"><span class="lbl" style="color:var(--accent)">Does the alert work</span><span class="v sm b">Alert → rebook</span><span class="d push">If people are told and do nothing, the alert is wrong, not the guest.</span></div>
       <div class="card pad stat" style="background:rgba(31,95,216,.08)"><span class="lbl" style="color:var(--accent)">Trust · target &lt; 5%</span><span class="v sm b">False-alert rate</span><span class="d push">The one that destroys the product fastest. Measured every week of the beta.</span></div>
-      <div class="card pad stat"><span class="lbl">Viability · target ≈ ₹30</span><span class="v sm">Cost per booking</span><span class="d push">Rises quietly as hotels get rechecked more often. Watched daily.</span></div>
+      <div class="card pad stat"><span class="lbl">Viability · target ≤ ₹30</span><span class="v sm">Cost per trip</span><span class="d push">Rises quietly as hotels get rechecked more often. The fee minus this is our margin.</span></div>
       <div class="card pad stat"><span class="lbl">Habit</span><span class="v sm">Repeat users</span><span class="d push">Second booking added within 90 days. Travel is infrequent, so this is slow.</span></div>
-      <div class="card pad stat"><span class="lbl">Load</span><span class="v sm">Tickets per 100</span><span class="d push">Support volume per 100 bookings. Tells us what the matcher is getting wrong.</span></div>
+      <div class="card pad stat"><span class="lbl">Load · target 1–3</span><span class="v sm">Issues per 100</span><span class="d push">Per 100 trips. Almost all should close through the buttons on the alert.</span></div>
     </div>
   </div>
 
@@ -2267,10 +2410,59 @@ table.t tr.me td.k{color:var(--accent)}
   </div>
 </section>
 
-<!-- ============ 30 · SOURCES ============ -->
+<!-- ============ 32 · HONEST VERDICT ============ -->
+<section class="slide">
+  <div class="slide-head">
+    <div class="eyebrow">Verdict · 32</div>
+    <div class="row">
+      <h2 class="title">The honest <em>verdict</em>.</h2>
+      <p class="lede" style="max-width:36ch;padding-bottom:7px">Three of the four questions have a confident answer. The fourth is the reason the beta comes first.</p>
+    </div>
+  </div>
+
+  <div class="body" style="gap:16px">
+    <div class="g4" style="flex:1">
+      <div class="card pad" style="gap:11px">
+        <span class="lbl">Can we build it?</span>
+        <span class="vchip">Yes</span>
+        <h3>High confidence.</h3>
+        <p>Every part is an existing, licensed service. Nothing here is research.</p>
+      </div>
+      <div class="card pad" style="gap:11px">
+        <span class="lbl">Is it safe for guests?</span>
+        <span class="vchip">Yes</span>
+        <h3>If we keep two rules.</h3>
+        <p>Book first, then cancel — and a second price check before every alert.</p>
+      </div>
+      <div class="card pad" style="gap:11px">
+        <span class="lbl">Will alerts be accurate?</span>
+        <span class="vchip">Mostly</span>
+        <h3>Good enough. Perfect, never.</h3>
+        <p>90–95% correct with the safeguards. Coupons and bank offers stay invisible.</p>
+      </div>
+      <div class="card pad" style="gap:11px;background:rgba(31,95,216,.08)">
+        <span class="lbl" style="color:var(--accent)">Will the business work?</span>
+        <span class="vchip u">Uncertain</span>
+        <h3 style="color:var(--accent)">The real question.</h3>
+        <p>Onto is funded and refunds the difference. Google's price alerts are free. We ask <span data-fee>₹50–150</span> up front.</p>
+      </div>
+    </div>
+
+    <div class="strip" style="margin-top:0">
+      <span class="rule"></span>
+      <span>Our edge has to be <b>WhatsApp, Indian languages and any booking app</b> — and a fee small enough that a guest who sees no drop still feels it was worth it.</span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Accuracy figures are estimates until the November validation on slide 29. Competitor facts as sourced on slide 08.</span>
+  </div>
+</section>
+
+<!-- ============ 33 · SOURCES ============ -->
 <section class="slide d30">
   <div class="slide-head" style="margin-bottom:22px">
-    <div class="eyebrow">Sources · 30</div>
+    <div class="eyebrow">Sources · 33</div>
     <div class="row">
       <h2 class="title">Every number in this deck.</h2>
       <p class="lede" style="max-width:36ch;padding-bottom:7px">Links are live. Prices and policies were current in November 2026 and will move.</p>
@@ -2364,6 +2556,148 @@ document.querySelectorAll("[data-name]").forEach(el => el.textContent = PRODUCT_
 document.querySelectorAll("[data-domain]").forEach(el => el.textContent = PRODUCT_DOMAIN);
 document.title = PRODUCT_NAME + " — internal discussion deck";
 
+/* ======= THE TRIP FEE — one place to set the default =======
+   In the deck, click any fee (₹50–150) and type a new one: "200" for a fixed fee,
+   "100-200" for a range, then Enter. Every figure that depends on it recalculates.
+   The chosen fee is kept in the link as ?fee=200, so that exact view can be shared. */
+const FEE_DEFAULT = { min: 50, max: 150 };
+
+const MODEL = {
+  checksToday: 26,           // ~20 SerpApi price checks per trip, ₹
+  checksSmart: [10, 16],     // the same with smart checks
+  aiWhatsApp: 1,             // AI read + WhatsApp messages per trip, ₹
+  razorpay: 0.0236,          // 2% + 18% GST, charged on the fee
+  monthly: [10770, 11770],   // MVP running cost a month, incl. AiSensy ₹1,770
+  saved100: [10000, 21000],  // saved by guests per 100 paid trips (estimate)
+  adminTrips: 248            // trips shown on the admin-dashboard mock-up
+};
+
+const money = n => (n < 0 ? "−" : "") + "₹" + Math.abs(Math.round(n)).toLocaleString("en-IN");
+const money1 = n => "₹" + (Math.round(n * 10) / 10).toLocaleString("en-IN", { maximumFractionDigits: 1 });
+const span = (a, b) => a === b ? a : (a[0] === "₹" && b[0] === "₹") ? a + "–" + b.slice(1) : a + " to " + b;
+const to5 = n => Math.round(n / 5) * 5, up5 = n => Math.ceil(n / 5) * 5, to100 = n => Math.round(n / 100) * 100;
+
+function parseFee(text) {
+  const nums = (String(text).replace(/,/g, "").match(/\d+(\.\d+)?/g) || [])
+    .map(Number).filter(n => n > 0 && n <= 100000).map(Math.round);
+  if (!nums.length) return null;
+  const a = nums[0], b = nums.length > 1 ? nums[1] : nums[0];
+  return { min: Math.min(a, b), max: Math.max(a, b) };
+}
+let fee = parseFee(new URLSearchParams(location.search).get("fee") || "") || { ...FEE_DEFAULT };
+
+function saveFee() {
+  try {
+    const u = new URL(location.href);
+    const isDefault = fee.min === FEE_DEFAULT.min && fee.max === FEE_DEFAULT.max;
+    if (isDefault) u.searchParams.delete("fee");
+    else u.searchParams.set("fee", fee.min === fee.max ? fee.min : fee.min + "-" + fee.max);
+    history.replaceState(null, "", u);
+  } catch (e) { /* file:// may refuse; the fee still updates on screen */ }
+}
+
+function figures() {
+  const { min, max } = fee, fixed = min === max, M = MODEL;
+  const mid = Math.round((min + max) / 2);
+  const ex = fixed ? min : Math.min(max, Math.max(min, Math.round(mid / 10) * 10 - 1));
+  const rz = f => f * M.razorpay, net = f => f - rz(f);
+  const today = f => M.checksToday + M.aiWhatsApp + rz(f);
+  const feeText = span(money(min), money(max));
+  const lo = up5(M.monthly[0] / net(max)), hi = up5(M.monthly[1] / net(min));
+  const breakEvenFee = Math.ceil((M.checksToday + M.aiWhatsApp) / (1 - M.razorpay));
+  const times = f => {
+    const a = M.saved100[0] / (100 * f), b = M.saved100[1] / (100 * f);
+    if (b < 1) return "less than they paid";
+    if (a < 1 && b < 1.25) return "at most about what they paid";
+    if (a < 1) return "roughly what they paid";
+    const r = n => n < 2 ? String(Math.round(n * 10) / 10) : String(Math.round(n));
+    return (r(a) === r(b) ? r(a) : r(a) + "–" + r(b)) + " times as much";
+  };
+  const cols = fixed ? [min] : [...new Set([min, mid, max])];
+  const cells = fn => cols.map(f => `<td class="n">${fn(f)}</td>`).join("");
+  const per100 =
+    `<thead><tr><th>Per 100 paid trips</th>${cols.map(f => `<th>${money(f)} fee</th>`).join("")}</tr></thead><tbody>` +
+    `<tr><td>Fees collected</td>${cells(f => money(100 * f))}</tr>` +
+    `<tr><td>Cost to watch, today</td>${cells(f => money(to100(100 * today(f))))}</tr>` +
+    `<tr><td class="k">Left for us</td>${cols.map(f => `<td class="n k">${money(to100(100 * (f - today(f))))}</td>`).join("")}</tr>` +
+    `<tr><td>Plus affiliate on rebooks</td><td class="n" colspan="${cols.length}">₹1,000–1,500</td></tr>` +
+    `<tr class="fee"><td class="k">Saved by the guests</td><td class="n k" colspan="${cols.length}">₹10,000–21,000</td></tr></tbody>`;
+  return {
+    "example": money(ex),
+    "example-note": fixed ? `The trip fee is ${feeText}` : `${money(ex)} is an example fee inside the ${feeText} range`,
+    "breakeven": lo === hi ? lo.toLocaleString("en-IN") : lo.toLocaleString("en-IN") + "–" + hi.toLocaleString("en-IN"),
+    "admin-fees": "₹" + (M.adminTrips * ex / 1000).toLocaleString("en-IN", { maximumFractionDigits: 1 }) + "k",
+    "admin-raz": money1(rz(ex)),
+    "admin-total": money(today(ex)),
+    "raz": span(money1(rz(min)), money1(rz(max))),
+    "cost-today": "≈ " + span(money(today(min)), money(today(max))),
+    "cost-smart": "≈ " + span(money(M.checksSmart[0] + M.aiWhatsApp + rz(min)), money(M.checksSmart[1] + M.aiWhatsApp + rz(max))),
+    "left-today": span(money(to5(min - today(min))), money(to5(max - today(max)))),
+    "left-smart": span(money(to5(min - (M.checksSmart[1] + M.aiWhatsApp + rz(min)))), money(to5(max - (M.checksSmart[0] + M.aiWhatsApp + rz(max))))),
+    "per100": per100,
+    "guest-value": fixed
+      ? `At <b>${money(min)}</b> the guests, as a group, get back ${times(min)}.`
+      : `At <b>${money(max)}</b> the guests, as a group, get back ${times(max)}. At <b>${money(min)}</b> they get back ${times(min)}.`,
+    "fee-verdict": min < breakEvenFee
+      ? `Below about ${money(breakEvenFee)} a trip we lose money on every booking. <b>Keep the fee above that, and well below a typical saving.</b>`
+      : fixed
+        ? `${feeText} a trip is profitable for us. The question is what the guest feels — <b>keep the fee well below a typical saving</b> of ₹1,000–1,400.`
+        : `Every fee in the range is profitable for us. The question is what the guest feels — <b>keep the fee well below a typical saving</b>, which argues for ${span(money(min), money(ex))} on smaller bookings.`,
+    "fee-status": fixed ? `<b>Fixed at ${feeText}</b> for every trip.` : `The range is set; the <b>exact fee is agreed after discussion</b>.`,
+    "options-title": fixed ? "Setting the fee — decided" : "Setting the fee — three options to discuss",
+    "options": fixed
+      ? `One flat fee of <b>${feeText}</b> for every trip, whatever its size or length.`
+      : `<b>Flat</b> ${money(ex)} a trip · <b>By booking value</b> ${money(min)} under ₹5,000, ${money(ex)} to ₹15,000, ${money(max)} above · <b>By nights</b> ${money(min)} a night, capped at ${money(max)}.`,
+    "_fee": feeText
+  };
+}
+
+function renderFee() {
+  const v = figures();
+  document.querySelectorAll("[data-fee]").forEach(el => {
+    el.textContent = v._fee;
+    el.title = "Click to change the trip fee";
+  });
+  document.querySelectorAll("[data-calc]").forEach(el => {
+    const k = el.dataset.calc;
+    if (k in v) el.innerHTML = v[k];
+  });
+}
+
+function editFee(el) {
+  const input = document.createElement("input");
+  input.className = "fee-input";
+  input.type = "text";
+  input.inputMode = "numeric";
+  input.value = fee.min === fee.max ? String(fee.min) : fee.min + "–" + fee.max;
+  input.size = Math.max(3, input.value.length + 1);
+  input.setAttribute("aria-label", "Trip fee in rupees — one number, or a range such as 50-150");
+  el.textContent = "₹";
+  el.appendChild(input);
+  input.focus();
+  input.select();
+  let done = false;
+  const finish = commit => {
+    if (done) return;
+    done = true;
+    if (commit) { const v = parseFee(input.value); if (v) { fee = v; saveFee(); } }
+    renderFee();
+  };
+  input.addEventListener("input", () => { input.size = Math.max(3, input.value.length + 1); });
+  input.addEventListener("keydown", e => {
+    e.stopPropagation();
+    if (e.key === "Enter") { e.preventDefault(); finish(true); }
+    if (e.key === "Escape") { e.preventDefault(); finish(false); }
+  });
+  input.addEventListener("blur", () => finish(true));
+}
+
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-fee]");
+  if (el && !el.querySelector("input")) editFee(el);
+});
+renderFee();
+
 const slides = [...document.querySelectorAll(".slide")];
 const countEl = document.getElementById("count");
 let i = 0;
@@ -2376,19 +2710,21 @@ function show(n){
 document.getElementById("prev").onclick = e => { e.stopPropagation(); show(i-1); };
 document.getElementById("next").onclick = e => { e.stopPropagation(); show(i+1); };
 addEventListener("keydown", e => {
+  if (e.target.closest && e.target.closest("input, textarea, [contenteditable=true]")) return;
   if (["ArrowRight","ArrowDown"," ","PageDown"].includes(e.key)){ e.preventDefault(); show(i+1); }
   if (["ArrowLeft","ArrowUp","PageUp"].includes(e.key)){ e.preventDefault(); show(i-1); }
   if (e.key === "Home") show(0);
   if (e.key === "End") show(slides.length-1);
 });
 addEventListener("click", e => {
-  if (e.target.closest("#hud, a")) return;
+  if (e.target.closest("#hud, a, [data-fee]")) return;
   show(i + (e.clientX < innerWidth*0.3 ? -1 : 1));
 });
 const canvas = document.getElementById("canvas");
 function fit(){ canvas.style.transform = "scale(" + Math.min(innerWidth/1280, innerHeight/720)*0.96 + ")"; }
 addEventListener("resize", fit); fit();
 show(parseInt(location.hash.slice(1)) - 1 || 0);
+addEventListener("hashchange", () => { const n = parseInt(location.hash.slice(1)) - 1; if (n >= 0 && n !== i) show(n); });
 /* nav pill: visible while the mouse moves, out of the way while presenting */
 const hud = document.getElementById("hud"); let hudT;
 function wake(){ hud.classList.add("show"); clearTimeout(hudT); hudT = setTimeout(() => { if (!hud.matches(":hover")) hud.classList.remove("show"); }, 2200); }

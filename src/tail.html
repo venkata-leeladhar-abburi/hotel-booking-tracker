@@ -14,6 +14,148 @@ document.querySelectorAll("[data-name]").forEach(el => el.textContent = PRODUCT_
 document.querySelectorAll("[data-domain]").forEach(el => el.textContent = PRODUCT_DOMAIN);
 document.title = PRODUCT_NAME + " — internal discussion deck";
 
+/* ======= THE TRIP FEE — one place to set the default =======
+   In the deck, click any fee (₹50–150) and type a new one: "200" for a fixed fee,
+   "100-200" for a range, then Enter. Every figure that depends on it recalculates.
+   The chosen fee is kept in the link as ?fee=200, so that exact view can be shared. */
+const FEE_DEFAULT = { min: 50, max: 150 };
+
+const MODEL = {
+  checksToday: 26,           // ~20 SerpApi price checks per trip, ₹
+  checksSmart: [10, 16],     // the same with smart checks
+  aiWhatsApp: 1,             // AI read + WhatsApp messages per trip, ₹
+  razorpay: 0.0236,          // 2% + 18% GST, charged on the fee
+  monthly: [10770, 11770],   // MVP running cost a month, incl. AiSensy ₹1,770
+  saved100: [10000, 21000],  // saved by guests per 100 paid trips (estimate)
+  adminTrips: 248            // trips shown on the admin-dashboard mock-up
+};
+
+const money = n => (n < 0 ? "−" : "") + "₹" + Math.abs(Math.round(n)).toLocaleString("en-IN");
+const money1 = n => "₹" + (Math.round(n * 10) / 10).toLocaleString("en-IN", { maximumFractionDigits: 1 });
+const span = (a, b) => a === b ? a : (a[0] === "₹" && b[0] === "₹") ? a + "–" + b.slice(1) : a + " to " + b;
+const to5 = n => Math.round(n / 5) * 5, up5 = n => Math.ceil(n / 5) * 5, to100 = n => Math.round(n / 100) * 100;
+
+function parseFee(text) {
+  const nums = (String(text).replace(/,/g, "").match(/\d+(\.\d+)?/g) || [])
+    .map(Number).filter(n => n > 0 && n <= 100000).map(Math.round);
+  if (!nums.length) return null;
+  const a = nums[0], b = nums.length > 1 ? nums[1] : nums[0];
+  return { min: Math.min(a, b), max: Math.max(a, b) };
+}
+let fee = parseFee(new URLSearchParams(location.search).get("fee") || "") || { ...FEE_DEFAULT };
+
+function saveFee() {
+  try {
+    const u = new URL(location.href);
+    const isDefault = fee.min === FEE_DEFAULT.min && fee.max === FEE_DEFAULT.max;
+    if (isDefault) u.searchParams.delete("fee");
+    else u.searchParams.set("fee", fee.min === fee.max ? fee.min : fee.min + "-" + fee.max);
+    history.replaceState(null, "", u);
+  } catch (e) { /* file:// may refuse; the fee still updates on screen */ }
+}
+
+function figures() {
+  const { min, max } = fee, fixed = min === max, M = MODEL;
+  const mid = Math.round((min + max) / 2);
+  const ex = fixed ? min : Math.min(max, Math.max(min, Math.round(mid / 10) * 10 - 1));
+  const rz = f => f * M.razorpay, net = f => f - rz(f);
+  const today = f => M.checksToday + M.aiWhatsApp + rz(f);
+  const feeText = span(money(min), money(max));
+  const lo = up5(M.monthly[0] / net(max)), hi = up5(M.monthly[1] / net(min));
+  const breakEvenFee = Math.ceil((M.checksToday + M.aiWhatsApp) / (1 - M.razorpay));
+  const times = f => {
+    const a = M.saved100[0] / (100 * f), b = M.saved100[1] / (100 * f);
+    if (b < 1) return "less than they paid";
+    if (a < 1 && b < 1.25) return "at most about what they paid";
+    if (a < 1) return "roughly what they paid";
+    const r = n => n < 2 ? String(Math.round(n * 10) / 10) : String(Math.round(n));
+    return (r(a) === r(b) ? r(a) : r(a) + "–" + r(b)) + " times as much";
+  };
+  const cols = fixed ? [min] : [...new Set([min, mid, max])];
+  const cells = fn => cols.map(f => `<td class="n">${fn(f)}</td>`).join("");
+  const per100 =
+    `<thead><tr><th>Per 100 paid trips</th>${cols.map(f => `<th>${money(f)} fee</th>`).join("")}</tr></thead><tbody>` +
+    `<tr><td>Fees collected</td>${cells(f => money(100 * f))}</tr>` +
+    `<tr><td>Cost to watch, today</td>${cells(f => money(to100(100 * today(f))))}</tr>` +
+    `<tr><td class="k">Left for us</td>${cols.map(f => `<td class="n k">${money(to100(100 * (f - today(f))))}</td>`).join("")}</tr>` +
+    `<tr><td>Plus affiliate on rebooks</td><td class="n" colspan="${cols.length}">₹1,000–1,500</td></tr>` +
+    `<tr class="fee"><td class="k">Saved by the guests</td><td class="n k" colspan="${cols.length}">₹10,000–21,000</td></tr></tbody>`;
+  return {
+    "example": money(ex),
+    "example-note": fixed ? `The trip fee is ${feeText}` : `${money(ex)} is an example fee inside the ${feeText} range`,
+    "breakeven": lo === hi ? lo.toLocaleString("en-IN") : lo.toLocaleString("en-IN") + "–" + hi.toLocaleString("en-IN"),
+    "admin-fees": "₹" + (M.adminTrips * ex / 1000).toLocaleString("en-IN", { maximumFractionDigits: 1 }) + "k",
+    "admin-raz": money1(rz(ex)),
+    "admin-total": money(today(ex)),
+    "raz": span(money1(rz(min)), money1(rz(max))),
+    "cost-today": "≈ " + span(money(today(min)), money(today(max))),
+    "cost-smart": "≈ " + span(money(M.checksSmart[0] + M.aiWhatsApp + rz(min)), money(M.checksSmart[1] + M.aiWhatsApp + rz(max))),
+    "left-today": span(money(to5(min - today(min))), money(to5(max - today(max)))),
+    "left-smart": span(money(to5(min - (M.checksSmart[1] + M.aiWhatsApp + rz(min)))), money(to5(max - (M.checksSmart[0] + M.aiWhatsApp + rz(max))))),
+    "per100": per100,
+    "guest-value": fixed
+      ? `At <b>${money(min)}</b> the guests, as a group, get back ${times(min)}.`
+      : `At <b>${money(max)}</b> the guests, as a group, get back ${times(max)}. At <b>${money(min)}</b> they get back ${times(min)}.`,
+    "fee-verdict": min < breakEvenFee
+      ? `Below about ${money(breakEvenFee)} a trip we lose money on every booking. <b>Keep the fee above that, and well below a typical saving.</b>`
+      : fixed
+        ? `${feeText} a trip is profitable for us. The question is what the guest feels — <b>keep the fee well below a typical saving</b> of ₹1,000–1,400.`
+        : `Every fee in the range is profitable for us. The question is what the guest feels — <b>keep the fee well below a typical saving</b>, which argues for ${span(money(min), money(ex))} on smaller bookings.`,
+    "fee-status": fixed ? `<b>Fixed at ${feeText}</b> for every trip.` : `The range is set; the <b>exact fee is agreed after discussion</b>.`,
+    "options-title": fixed ? "Setting the fee — decided" : "Setting the fee — three options to discuss",
+    "options": fixed
+      ? `One flat fee of <b>${feeText}</b> for every trip, whatever its size or length.`
+      : `<b>Flat</b> ${money(ex)} a trip · <b>By booking value</b> ${money(min)} under ₹5,000, ${money(ex)} to ₹15,000, ${money(max)} above · <b>By nights</b> ${money(min)} a night, capped at ${money(max)}.`,
+    "_fee": feeText
+  };
+}
+
+function renderFee() {
+  const v = figures();
+  document.querySelectorAll("[data-fee]").forEach(el => {
+    el.textContent = v._fee;
+    el.title = "Click to change the trip fee";
+  });
+  document.querySelectorAll("[data-calc]").forEach(el => {
+    const k = el.dataset.calc;
+    if (k in v) el.innerHTML = v[k];
+  });
+}
+
+function editFee(el) {
+  const input = document.createElement("input");
+  input.className = "fee-input";
+  input.type = "text";
+  input.inputMode = "numeric";
+  input.value = fee.min === fee.max ? String(fee.min) : fee.min + "–" + fee.max;
+  input.size = Math.max(3, input.value.length + 1);
+  input.setAttribute("aria-label", "Trip fee in rupees — one number, or a range such as 50-150");
+  el.textContent = "₹";
+  el.appendChild(input);
+  input.focus();
+  input.select();
+  let done = false;
+  const finish = commit => {
+    if (done) return;
+    done = true;
+    if (commit) { const v = parseFee(input.value); if (v) { fee = v; saveFee(); } }
+    renderFee();
+  };
+  input.addEventListener("input", () => { input.size = Math.max(3, input.value.length + 1); });
+  input.addEventListener("keydown", e => {
+    e.stopPropagation();
+    if (e.key === "Enter") { e.preventDefault(); finish(true); }
+    if (e.key === "Escape") { e.preventDefault(); finish(false); }
+  });
+  input.addEventListener("blur", () => finish(true));
+}
+
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-fee]");
+  if (el && !el.querySelector("input")) editFee(el);
+});
+renderFee();
+
 const slides = [...document.querySelectorAll(".slide")];
 const countEl = document.getElementById("count");
 let i = 0;
@@ -26,19 +168,21 @@ function show(n){
 document.getElementById("prev").onclick = e => { e.stopPropagation(); show(i-1); };
 document.getElementById("next").onclick = e => { e.stopPropagation(); show(i+1); };
 addEventListener("keydown", e => {
+  if (e.target.closest && e.target.closest("input, textarea, [contenteditable=true]")) return;
   if (["ArrowRight","ArrowDown"," ","PageDown"].includes(e.key)){ e.preventDefault(); show(i+1); }
   if (["ArrowLeft","ArrowUp","PageUp"].includes(e.key)){ e.preventDefault(); show(i-1); }
   if (e.key === "Home") show(0);
   if (e.key === "End") show(slides.length-1);
 });
 addEventListener("click", e => {
-  if (e.target.closest("#hud, a")) return;
+  if (e.target.closest("#hud, a, [data-fee]")) return;
   show(i + (e.clientX < innerWidth*0.3 ? -1 : 1));
 });
 const canvas = document.getElementById("canvas");
 function fit(){ canvas.style.transform = "scale(" + Math.min(innerWidth/1280, innerHeight/720)*0.96 + ")"; }
 addEventListener("resize", fit); fit();
 show(parseInt(location.hash.slice(1)) - 1 || 0);
+addEventListener("hashchange", () => { const n = parseInt(location.hash.slice(1)) - 1; if (n >= 0 && n !== i) show(n); });
 /* nav pill: visible while the mouse moves, out of the way while presenting */
 const hud = document.getElementById("hud"); let hudT;
 function wake(){ hud.classList.add("show"); clearTimeout(hudT); hudT = setTimeout(() => { if (!hud.matches(":hover")) hud.classList.remove("show"); }, 2200); }

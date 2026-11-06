@@ -1,7 +1,8 @@
 # StayWatch — discussion deck
 
-A 30-slide deck for StayWatch, a service that watches a refundable hotel booking after it is
-made and alerts the guest when the same room gets cheaper.
+A 33-slide deck for StayWatch, a service that watches a refundable hotel booking after it is
+made and alerts the guest when the same room gets cheaper. Guests pay ₹50–150 per trip and
+keep the whole saving.
 
 `index.html` is the whole deck in one self-contained file (~1.2 MB): photos and fonts are
 inlined, so it opens offline, can be sent as a single attachment, and makes no network
@@ -29,6 +30,15 @@ python3 build.py
 ```
 
 To rename the product, change `PRODUCT_NAME` in `src/tail.html` and rebuild.
+
+## Changing the trip fee
+
+Click any fee in the deck (for example **₹50–150**) and type a new one — `200` for a fixed
+fee or `100-200` for a range — then press Enter (Esc cancels). Every figure that depends on
+it updates: the example fee, break-even trips, Razorpay cost, margin per trip, the per-100
+table, the admin mock-up and the wording around them. The fee is kept in the link as
+`?fee=200`, so that view can be shared. To change the default for everyone, edit
+`FEE_DEFAULT` in `src/tail.html` and rebuild; the cost assumptions sit next to it in `MODEL`.
 Design rules and the slide list are in `DESIGN_SPEC.md`; the original content brief is
 `PRESENTATION_BRIEF.md`.
 
