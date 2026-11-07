@@ -28,8 +28,12 @@ html,body{height:100%}
 body{background:#0E0F12;font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden;color:var(--ink)}
 img{display:block;max-width:100%}
 
-#stage{position:fixed;inset:0;display:grid;place-items:center}
-#canvas{width:1280px;height:720px;position:relative;transform-origin:center center}
+#stage{position:fixed;inset:0;overflow:hidden;touch-action:pan-y pinch-zoom}
+#canvas{width:1280px;height:720px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);transform-origin:center center}
+/* phones held upright: the slide fills the width, a hint sits underneath */
+#rotate-hint{display:none;position:fixed;left:0;right:0;text-align:center;padding:0 24px;font-size:14px;line-height:1.45;color:rgba(255,255,255,.62);pointer-events:none}
+@media (orientation:portrait) and (max-width:767px){#rotate-hint{display:block}}
+@media (pointer:coarse){.fee-input{font-size:max(1em,16px)}#hud{bottom:max(16px,env(safe-area-inset-bottom))}}
 .slide{
   position:absolute;inset:0;width:1280px;height:720px;overflow:hidden;
   background:var(--page);display:none;flex-direction:column;padding:60px 72px 54px;
@@ -500,7 +504,8 @@ table.t tr.me td.k{color:var(--accent)}
   body{overflow:visible;background:#fff}
   #hud{display:none}
   #stage{position:static;display:block}
-  #canvas{width:auto;height:auto;transform:none!important}
+  #canvas{width:auto;height:auto;position:static;transform:none!important}
+  #rotate-hint{display:none!important}
   .slide{display:flex!important;position:relative;page-break-after:always}
   @page{size:1280px 720px;margin:0}
 }
